@@ -1,0 +1,233 @@
+//依赖于jquery.js
+
+function getQueryString(name){
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+
+function setCookie(name,value){
+    var Days = 1;
+    var exp  = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString() + ';path=/';
+}
+
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+    if(arr != null) return unescape(arr[2]); return null;
+}
+
+function delCookie(name){
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString() + ';path=/';
+}
+
+function
+set_wx_info_debug_mode(state)
+{
+    wx_info_debug_mode = state;
+}
+
+function
+print_debug_info(msg)
+{
+    if(wx_info_debug_mode){
+        console.log(msg);
+    }
+}
+
+var wx_info_debug_mode = false;
+var wx_return_code = getQueryString("code");
+var bihu_openid_key = "openid";
+var bihu_openid_full_key = "openid_full";
+var vip_openid_key = "openid_vip";
+
+var filter_key_list = [{"key":bihu_openid_key,"is_all":0},{"key":bihu_openid_full_key,"is_all":1},{"key":vip_openid_key,"is_all":0}];
+var method_list = {"openid":getLocalBiHuInfo,"openid_full":getLocalBiHuAllInfo,"openid_vip":getLocalVIPInfo};
+
+function
+getLocalWXInfo(name, next_name)
+{
+    if(!name){
+        print_debug_info('无效的公众号标识key');
+        return null;
+    }
+
+    var filter_item = null;
+    for(var i=0;i<filter_key_list.length;++i){
+        filter_item = filter_key_list[i];
+        if(filter_item.key == name){
+            break;
+        }
+    }
+
+    if(!filter_item){
+        print_debug_info('未找到key�?'+name);
+        return null;
+    }
+
+
+    next_name = next_name || null;
+
+    var v = getCookie(name);
+    if(!v){
+        if(method_list[name]){
+            method_list[name](wx_return_code, next_name);
+        }else{
+            print_debug_info('无效的方法key�?'+name);
+            return null;
+        }
+    }
+
+    if(!v){
+        return null;
+    }
+
+    if(v){
+        setCookie(name,v);
+        print_debug_info('找到数据，对应的key�?'+name);
+    }else{
+        v = null;
+        print_debug_info('数据获取失败，对应的key�?'+name);
+    }
+
+    return v;
+}
+
+function
+getLocalVIPInfo(code, next_name)
+{
+    var openid_vip = null;
+    if(openid_vip==null && code==null){
+        //处理回调的url,防止刷新出现其他问题
+        var redirect_uri = window.location.href;
+        var offset=redirect_uri.indexOf('?code') >= 0 ? redirect_uri.indexOf('?code') : redirect_uri.indexOf('&code');
+        if(offset >= 0) redirect_uri=encodeURIComponent(redirect_uri.substring(0,offset));
+        var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx03bd12c78f493891&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        location.href=url;
+    }
+
+//获取openid
+    if(openid_vip==null && code!=null){
+        $.ajaxSettings.async = false;
+        var url='https://www.bihubao.com/index.php/Api/Obtain/openid_vip';
+        $.post(url,{'code':code},function(msg){
+            if(msg.openid==null){
+                print_debug_info('code换取openid失败');
+                print_debug_info(msg);
+            }else{
+                setCookie(vip_openid_key,msg.openid);
+                if(next_name && next_name !== vip_openid_key){
+                    var v = getCookie(next_name);
+                    if(!v){
+                        if(method_list[next_name]){
+                            //var fun = eval(method_list[next_name]);
+                            //fun(null,null);
+                            method_list[next_name](null,null);
+                        }else{
+                            print_debug_info('无效的方法vip_key�?'+next_name);
+                        }
+                    }
+                }
+            }
+        },'json');
+        $.ajaxSettings.async = true;
+    }
+}
+
+function
+getLocalBiHuInfo(code, next_name)
+{
+    var openid = null;
+    if (openid == null && code == null) {
+        //处理回调的url,防止刷新出现其他问题
+        var redirect_uri = window.location.href;
+        var offset=redirect_uri.indexOf('?code') >= 0 ? redirect_uri.indexOf('?code') : redirect_uri.indexOf('&code');
+        if (offset >= 0) redirect_uri = encodeURIComponent(redirect_uri.substring(0, offset));
+        else redirect_uri = encodeURIComponent(redirect_uri);
+        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx35d89be593b7b077&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        location.href = url;
+        return;
+    }
+
+    //获取openid
+    if (openid == null && code != null) {
+        $.ajaxSettings.async = false;
+        var url = 'https://www.bihubao.com/index.php/Api/Obtain/openid';
+        $.post(url, {
+            'code': code
+        }, function(msg) {
+            if (msg.openid == null) {
+                print_debug_info(code+':code换取openid失败');
+                print_debug_info(msg);
+            } else {
+                setCookie(bihu_openid_key, msg.openid);
+                if(next_name && next_name !== bihu_openid_key){
+                    var v = getCookie(next_name);
+                    if(!v){
+                        if(method_list[next_name]){
+                            //var fun = eval(method_list[next_name]);
+                            //fun(null,null);
+                            method_list[next_name](null,null);
+                        }else{
+                            print_debug_info('无效的方法bihu_key�?'+next_name);
+                        }
+                    }
+                }
+            }
+        }, 'json');
+        $.ajaxSettings.async = true;
+    }
+}
+
+function
+getLocalBiHuAllInfo(code, next_name)
+{
+    var openid_full = null;
+
+    var redirect_uri = window.location.href;
+    var offset=redirect_uri.indexOf('?code') >= 0 ? redirect_uri.indexOf('?code') : redirect_uri.indexOf('&code');
+    if(offset >= 0) redirect_uri=encodeURIComponent(redirect_uri.substring(0,offset));
+
+    if(code==null && openid_full==null){
+        var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx35d89be593b7b077&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect';
+        location.href=url;
+    }
+
+//获取全部信息
+    if(openid_full==null && code!=null){
+        $.ajaxSettings.async = false;
+        var url='https://www.bihubao.com/index.php/Api/Obtain/openid_full';
+        $.post(url,{'code':code},function(msg){
+            if(msg.openid==null){
+                print_debug_info('获取全部信息失败');
+                print_debug_info(msg);
+            }else{
+                //如果当前用户未关注，采用授权方式，获取code
+                if(msg.nickname==null){
+                    $.ajaxSettings.async = true;
+                    var url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx35d89be593b7b077&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+                    location.href=url;
+                }else{
+                    setCookie(bihu_openid_full_key,JSON.stringify(msg));
+                    if(next_name && next_name !== bihu_openid_full_key){
+                        var v = getCookie(next_name);
+                        if(!v){
+                            if(method_list[next_name]){
+                                //var fun = eval(method_list[next_name]);
+                                //fun(null,null);
+                                method_list[next_name](null,null);
+                            }else{
+                                print_debug_info('无效的方法bihu_full_key�?'+next_name);
+                            }
+                        }
+                    }
+                }
+            }
+        },'json');
+        $.ajaxSettings.async = true;
+    }
+}

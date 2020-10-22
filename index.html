@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <title>补充增信</title>
+  <link rel="stylesheet" href="https://imgs.bihubao.com/Public/css/NewUser/reset.css?v0.1">
+  <link rel="stylesheet" type="text/css" media="all"
+    href="https://imgs.bihubao.com/Public/css/buchongzengxin/Index/index.css?v-05">
+  <link rel="stylesheet" href="https://imgs.bihubao.com/Public/css/nuoyanchou/add-css/apply_authorize.css">
+  <script src="https://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Istok Web:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css" />
+  <link href="http://fonts.googleapis.com/css?family=Prosto+One" rel="stylesheet" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css' />
+  <link href="https://imgs.bihubao.com/Public/css/buchongzengxin/honeySwitch.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrapper .titles .common-row .cell-right .switch-off {
+    border: 1px solid #d4d9da;
+    transition: border 0.4s, box-shadow 0.4s;
+    background-color: #d4d9da;
+    box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+  }
+
+  .new-create {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .masks {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    display: none;
+  }
+
+  .masks img {
+    width: 80%;
+    height: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  .masks2 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    display: none;
+  }
+
+  .masks2 img {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50%;
+    width: 1rem;
+    height: auto;
+  }
+
+  .float_header>button {
+    padding: 0 0.2rem;
+  }
+
+  .float_header {
+    font-size: 0.24rem;
+  }
+
+  .float_header>button {
+    top: 0.26rem;
+  }
+
+  .title_txt {
+    color: rgb(252, 154, 70);
+  }
+
+  .masktips {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+
+  .masktips .text_box {
+    width: 80%;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50%;
+    border-radius: .2rem;
+    margin-left: 10%;
+  }
+
+  .text_box h6 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* border-bottom: .01rem #ccc solid; */
+    font-size: .35rem;
+    padding: .3rem 0;
+  }
+
+  .text_box p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: .3rem;
+    padding: .6rem 0;
+  }
+
+  .text_box span {
+    width: 80%;
+    border-radius: .2rem;
+    display: flex;
+    background: linear-gradient(to right, rgba(252, 172, 83, 0.86), rgba(251, 70, 61, 0.86));
+    justify-content: center;
+    font-size: .3rem;
+    padding: .25rem 0;
+    margin-bottom: .4rem;
+    margin-top: .4rem;
+    color: #fff;
+  }
+  #ok2{
+    border-top: solid 1.1px #ccc;
+  }
+  .mask-box>p{
+    border-top: solid 1.1px #ccc;
+  }
+</style>
+<!-- <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/initiatorjs/jquery.min.js"></script> -->
+<script src="https://imgs.bihubao.com/Public/js/nuoyanchou/add-js/reset.js"></script>
+
+<body style="width:100%;height:100%;overflow-y:hidden;">
+  <div class="wrapper">
+    <div class="apply_authorize">
+      <header class="float_header">
+        <img src="https://imgs.bihubao.com/Public/images/nuoyanchou/add-images/float_icon.png">
+        当前为筹款人<span class="title_txt">测试的测试的</span>授权远程发起
+        <button class="quit_edit">退出编辑</button>
+      </header>
+    </div>
+    <div class="headers">
+      <h6>患者增信</h6>
+      <p>如实填写将会获取捐款人的信任</p>
+    </div>
+    <!--房产-->
+    <div class="titles one-list">
+      <p>家庭房屋财产状况</p>
+      <div class="common-row">
+        <div class="cell-right"><span class="switch-off" id="checked1"></span></div>
+      </div>
+    </div>
+    <div class="checkboxs-btn one-list">
+      <p>数量</p>
+      <div class="btn-box1">
+        <span>无<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>1套<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>2套<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>3套以上<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+      </div>
+    </div>
+    <div class="checkboxs-btn one-list" style="padding-bottom:.3rem;">
+      <p>状态</p>
+      <div class="btn-box2">
+        <span>未变卖<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>变卖中<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+      </div>
+    </div>
+    <div class="bar one-list" id='bar1'>
+      <p>
+        <span>价值<a>（万元）</a></span>
+        <b id="oneB">0<a>万</a></b>
+      </p>
+      <div class="bar-box">
+        <div class="bar-son"></div>
+        <span></span>
+      </div>
+      <p class="text-1">
+        <a>0</a>
+        <a>100万</a>
+      </p>
+    </div>
+    <div class="addpic-box one-list">
+      <h6>房屋资产证明<a>（最多8张）</a></h6>
+      <div class="Tips1">
+        *请如实提供家庭房屋资产证明照片，包括但不限于房产所有权证、土地使用权证、土地所有权证、第三方公证机构证明材料等，图片上的所有信息必须清晰可见。
+      </div>
+      <div class="updata-pic" id="create-img0">
+        <div class="new-create">
+        </div>
+        <div class="updata-btn">
+          <img src="https://imgs.bihubao.com/Public/images/contribution/contribution/xiangji.gif" />
+          <span>上传照片</span>
+        </div>
+      </div>
+    </div>
+    <!-- 车产 -->
+    <div class="titles two-list">
+      <p>家庭车辆财产状况</p>
+      <div class="common-row">
+        <div class="cell-right"><span class="switch-off" id="checked2"></span></div>
+      </div>
+    </div>
+    <div class="checkboxs-btn two-list">
+      <p>数量</p>
+      <div class="btn-box3">
+        <span>无<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>1辆<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>2辆<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>3辆以上<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+      </div>
+    </div>
+    <div class="checkboxs-btn two-list" style="padding-bottom:.3rem;">
+      <p>状态</p>
+      <div class="btn-box4">
+        <span>未变卖<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>变卖中<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+      </div>
+    </div>
+    <div class="bar two-list" id='bar2'>
+      <p>
+        <span>价值<a>（万元）</a></span>
+        <b id="twoB">0<a>万</a></b>
+      </p>
+      <div class="bar-box">
+        <div class="bar-son"></div>
+        <span></span>
+      </div>
+      <p class="text-1">
+        <a>0</a>
+        <a>100万</a>
+      </p>
+    </div>
+    <div class="addpic-box two-list">
+      <h6>车辆资产证明<a>（最多8张）</a></h6>
+      <div class="Tips1">
+        *请如实提供家庭车辆登记证书照片，图片上的所有信息必须清晰可见。
+      </div>
+      <div class="updata-pic" id="create-img1">
+        <div class="new-create">
+        </div>
+        <div class="updata-btn">
+          <img src="https://imgs.bihubao.com/Public/images/contribution/contribution/xiangji.gif" />
+          <span>上传照片</span>
+        </div>
+      </div>
+    </div>
+    <!--金融资产状-->
+    <div class="titles theer-list">
+      <p>家庭金融资产状况</p>
+      <div class="common-row">
+        <div class="cell-right"><span class="switch-off" id="checked3"></span></div>
+      </div>
+    </div>
+    <div class="checkboxs-btn theer-list">
+      <p>类型</p>
+      <div class="btn-box5">
+        <span id="ts">无<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+        <span>银行存款<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>存款+投资理财<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+      </div>
+    </div>
+    <div class="bar theer-list" id='bar3'>
+      <p>
+        <span>价值<a>（万元）</a></span>
+        <b id="theerB">0<a>万</a></b>
+      </p>
+      <div class="bar-box">
+        <div class="bar-son"></div>
+        <span></span>
+      </div>
+      <p class="text-1">
+        <a>0</a>
+        <a>100万</a>
+      </p>
+    </div>
+    <div class="addpic-box theer-list">
+      <h6>金融资产证明<a>（最多8张）</a></h6>
+      <div class="Tips1">
+        *请如实提供家庭金融资产照片，图片上的所有信息必须清晰可见。
+      </div>
+      <div class="updata-pic" id="create-img2">
+        <div class="new-create">
+        </div>
+        <div class="updata-btn">
+          <img src="https://imgs.bihubao.com/Public/images/contribution/contribution/xiangji.gif" />
+          <span>上传照片</span>
+        </div>
+      </div>
+    </div>
+    <!--患者保险状况-->
+    <div class="titles for-list">
+      <p>患者保险状况</p>
+      <div class="common-row">
+        <div class="cell-right"><span class="switch-off" id="checked4"></span></div>
+      </div>
+    </div>
+    <div class="checkboxs-btn for-list">
+      <p>类型</p>
+      <div class="btn-box6">
+        <span id="ts">无<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+        <span id="ts">按时缴纳医保<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+        <span id="tss">医保+商业重疾保险<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+      </div>
+    </div>
+    <div class="bar for-list" id='bar4'>
+      <p>
+        <span>价值<a>（万元）</a></span>
+        <b id="forB">0<a>万</a></b>
+      </p>
+      <div class="bar-box">
+        <div class="bar-son"></div>
+        <span></span>
+      </div>
+      <p class="text-1">
+        <a>0</a>
+        <a>100万</a>
+      </p>
+    </div>
+    <div class="addpic-box for-list">
+      <h6>患者保险证明<a>（最多8张）</a></h6>
+      <div class="Tips1">
+        *请如实提供患者医保证明、商业保险保单照片，图片上的所有信息必须清晰可见。
+      </div>
+      <div class="updata-pic" id="create-img3">
+        <div class="new-create">
+        </div>
+        <div class="updata-btn">
+          <img src="https://imgs.bihubao.com/Public/images/contribution/contribution/xiangji.gif" />
+          <span>上传照片</span>
+        </div>
+      </div>
+    </div>
+    <!--低保-->
+    <div class="titles five-list">
+      <p>是否建档立卡贫困户</p>
+      <div class="common-row">
+        <div class="cell-right"><span class="switch-off" id="checked5"></span></div>
+      </div>
+    </div>
+    <div class="checkboxs-btn five-list">
+      <p>类型</p>
+      <div class="btn-box7">
+        <span id="ts">无<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+        <span>城镇低保<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>农村低保<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span>农村五保<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png" alt=""></a></span>
+        <span id="tss">政府医疗救助<a><img src="https://imgs.bihubao.com/Public/images/buchongzengxin/checked.png"
+              alt=""></a></span>
+      </div>
+    </div>
+    <div class="addpic-box five-list">
+      <h6>患者低保证明<a>（最多8张）</a></h6>
+      <div class="Tips1">
+        *请如实提供患者享受低保证明、农村五保照片，图片上的所有信息必须清晰可见。
+      </div>
+      <div class="updata-pic" id="create-img4">
+        <div class="new-create"></div>
+        <div class="updata-btn">
+          <img src="https://imgs.bihubao.com/Public/images/contribution/contribution/xiangji.gif" />
+          <span>上传照片</span>
+        </div>
+      </div>
+    </div>
+    <div class="tims"></div>
+    <div class="mask">
+      <div class="mask-box">
+        <h6>提交后不可修改，增信信息如有不实或将承担被举报风险。确定提交吗？</h6>
+        <p><button id="hideMask">取消</button>
+          <button id="ok">确定</button></p>
+      </div>
+      <div class="mask-box2">
+        <h6></h6>
+        <button id="ok2">知道了</button></p>
+      </div>
+    </div>
+    <div class="masks">
+      <img src="" alt="">
+    </div>
+    <div class="masks2">
+      <img src="https://imgs.bihubao.com/Public/images/buchongzengxin/5-121204193R0-50.gif" alt="">
+    </div>
+    <div class="footer">
+      <button style="vertical-align: top;">提交</button>
+    </div>
+    <div class="masktips" style="display: none;">
+      <div class="text_box">
+        <h6>提示</h6>
+        <p id="tips_text">提交成功</p>
+        <span id="ok_masktips">确定</span>
+      </div>
+    </div>
+  </div>
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/initiatorjs/jquery.min.js"></script>
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/ajaxFn/ajax-extend.js?v01"></script>
+  <script type="text/javascript" src="https://imgs.bihubao.com/Public/js/buchongzengxin/honeySwitch.js"></script>
+  <script>
+    var flag = true
+    var flag2 = true
+    var flag3 = true
+    var flag4 = true
+    var str0 = ''
+    var str1 = ''
+    var str2 = ''
+    var str3 = ''
+    var str4 = ''
+    var newstr0 = ''
+    var newstr1 = ''
+    var newstr2 = ''
+    var newstr3 = ''
+    var newstr4 = ''
+    var contDate0 = []
+    var contDate1 = []
+    var contDate2 = []
+    var contDate3 = []
+    var contDate4 = []
+    var newIMG0 = false
+    var newIMG1 = false
+    var newIMG2 = false
+    var newIMG3 = false
+    var newIMG4 = false
+    var len = 0
+    var len2 = 0
+    var len3 = 0
+    var len4 = 0
+    var Cont = [false, false, false, false, false]
+    var No_zican = true
+    var No_zican1 = true
+    var No_zican2 = true
+    var No_zican3 = true
+    var Cont2 = [true, true, true, true, true]
+    var init1 = false
+    var cont1_ = 0
+    var cont1_1 = 0
+    var init2 = false
+    var cont2_ = 0
+    var cont2_2 = 0
+    var init3 = false
+    var cont3_ = 0
+    var cont3_3 = 0
+    var init4 = false
+    var cont4_ = 0
+    var cont4_4 = 0
+    var text = ''
+    var init5 = false
+    var cont5_ = 0
+    var cont5_5 = 0
+    var bar1_num = 0
+    var bar2_num = 0
+    var bar3_num = 0
+    var bar4_num = 0
+    var Parameter = []
+    var obj1 = {}
+    var obj2 = {}
+    var obj3 = {}
+    var obj4 = {}
+    var obj5 = {}
+    var prjId = ''
+    obj1.serverids = ''
+    obj2.serverids = ''
+    obj3.serverids = ''
+    obj4.serverids = ''
+    obj5.serverids = ''
+    var flagCont = 0
+    var textTips = '提交成功'
+    //获取动态路径
+    var activeurl = "<%=config.serverpath%>";
+    sessionStorage.setItem('key_a', activeurl);
+    //截取地址栏
+    function UrlSearch() {
+      var name, value;
+      var str = location.href; //取得整个地址栏
+      var num = str.indexOf("?")
+      str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+
+      var arr = str.split("&"); //各个参数放到数组里
+      for (var i = 0; i < arr.length; i++) {
+        num = arr[i].indexOf("=");
+        if (num > 0) {
+          name = arr[i].substring(0, num);
+          value = arr[i].substr(num + 1);
+          this[name] = value;
+        }
+      }
+    }
+    var Request = new UrlSearch(); //实例化
+    if (Request.id) {
+      prjId = Request.id
+    } else {
+      prjId = 4799
+    }
+    obj1.projectId = prjId
+    obj2.projectId = prjId
+    obj3.projectId = prjId
+    obj4.projectId = prjId
+    obj5.projectId = prjId
+    $.ajax({
+      url: activeurl + `/api/credit/list/${prjId}`,
+      type: 'get',
+      success: function (res) {
+        console.log(res)
+        $.each(res, function (a, b) {
+          if (b.mainType == 1) {
+            $('.one-list').hide()
+            flagCont++
+          } else if (b.mainType == 2) {
+            $('.two-list').hide()
+            flagCont++
+          } else if (b.mainType == 3) {
+            $('.theer-list').hide()
+            flagCont++
+          } else if (b.mainType == 4) {
+            $('.for-list').hide()
+            flagCont++
+          } else if (b.mainType == 5) {
+            $('.five-list').hide()
+            flagCont++
+          }
+        })
+        if (flagCont == 5) {
+          $('.masktips').show()
+          $('#tips_text').text('您已补充信息,前往查看')
+          $('#ok_masktips').on('click', function () {
+            console.log(111111)
+            window.location.href = `${activeurl}/htmls/buchongzengxin/detail?id=${prjId}`
+            $('.masktips').hide()
+          })
+          // alert('您已补充信息,前往查看')
+          // window.location.href = `${activeurl}/htmls/buchongzengxin/detail?id=${prjId}`
+        }
+      }
+    })
+    $.ajax({
+      url: activeurl + '/api/common/api-autho',
+      type: 'get',
+      success: function (res) {
+        console.log(res)
+      }
+    })
+    //开关按钮
+    $('#checked1').on('click', function () {
+      var types = Cont[0]
+      Cont[0] = !types
+      console.log(Cont[0])
+      if (!Cont[0]) {
+        $('.btn-box1 span').removeClass('actived')
+        $('.btn-box2 span').removeClass('actived')
+        $.each($('.btn-box1 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+        $.each($('.btn-box2 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+      }
+      bars()
+    })
+    $('#checked2').on('click', function () {
+      var types = Cont[1]
+      Cont[1] = !types
+      if (!Cont[1]) {
+        $('.btn-box3 span').removeClass('actived')
+        $('.btn-box4 span').removeClass('actived')
+        $.each($('.btn-box3 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+        $.each($('.btn-box4 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+      }
+      bars()
+    })
+    $('#checked3').on('click', function () {
+      var types = Cont[2]
+      Cont[2] = !types
+      if (!Cont[2]) {
+        $('.btn-box5 span').removeClass('actived')
+        $.each($('.btn-box5 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+      }
+      bars()
+    })
+    $('#checked4').on('click', function () {
+      var types = Cont[3]
+      Cont[3] = !types
+      if (!Cont[3]) {
+        $('.btn-box6 span').removeClass('actived')
+        $.each($('.btn-box6 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+      }
+      bars()
+    })
+    $('#checked5').on('click', function () {
+      var types = Cont[4]
+      Cont[4] = !types
+      if (!Cont[4]) {
+        $('.btn-box7 span').removeClass('actived')
+        $.each($('.btn-box7 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+      }
+      bars()
+    })
+    //选择按钮控制
+    $('.btn-box1 span').on('click', function () {
+      $(this).addClass('actived').siblings().removeClass('actived')
+      $.each($('.btn-box1 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          $(this).children().eq(0).css({
+            opacity: 1
+          })
+        } else {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+
+        }
+      })
+      //打开按钮
+      $('#checked1').removeClass('switch-off').addClass('switch-on')
+      $('#checked1').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      //选择了无
+      if ($(this).index() == 0) {
+        No_zican = false
+        Cont2[0] = false
+        console.log(Cont[0])
+        $('.btn-box2 span').addClass('actived').siblings().removeClass('actived')
+        $.each($('.btn-box2 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+        Cont[0] = true
+        obj1.amount = 0
+        Parameter.push(obj1)
+      } else {
+        No_zican = true
+        Cont[0] = true
+        Cont2[0] = true
+        console.log(Cont[0])
+      }
+      bars()
+    })
+    $('.btn-box2 span').on('click', function () {
+      if (No_zican) {
+        $(this).addClass('actived').siblings().removeClass('actived')
+        $.each($('.btn-box2 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            $(this).children().eq(0).css({
+              opacity: 1
+            })
+          } else {
+            $(this).children().eq(0).css({
+              opacity: 0
+            })
+
+          }
+        })
+      }
+      //打开按钮
+      $('#checked1').removeClass('switch-off').addClass('switch-on')
+      $('#checked1').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      Cont[0] = true
+      bars()
+    })
+    $('.btn-box3 span').on('click', function () {
+      $(this).addClass('actived').siblings().removeClass('actived')
+      $.each($('.btn-box3 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          $(this).children().eq(0).css({
+            opacity: 1
+          })
+        } else {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+
+        }
+      })
+      //打开按钮
+      $('#checked2').removeClass('switch-off').addClass('switch-on')
+      $('#checked2').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      //选择了无
+      if ($(this).index() == 0) {
+        No_zican1 = false
+        Cont2[1] = false
+        $('.btn-box4 span').addClass('actived').siblings().removeClass('actived')
+        $.each($('.btn-box4 span'), function (a, b) {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        })
+        Cont[1] = true
+        obj2.amount = 0
+        Parameter.push(obj2)
+      } else {
+        No_zican1 = true
+        Cont[1] = true
+        Cont2[1] = true
+      }
+      bars()
+    })
+    $('.btn-box4 span').on('click', function () {
+      if (No_zican1) {
+        $(this).addClass('actived').siblings().removeClass('actived')
+        $.each($('.btn-box4 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            $(this).children().eq(0).css({
+              opacity: 1
+            })
+          } else {
+            $(this).children().eq(0).css({
+              opacity: 0
+            })
+
+          }
+        })
+      }
+      //打开按钮
+      $('#checked2').removeClass('switch-off').addClass('switch-on')
+      $('#checked2').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      Cont[1] = true
+      bars()
+    })
+    $('.btn-box5 span').on('click', function () {
+      $(this).addClass('actived').siblings().removeClass('actived')
+      $.each($('.btn-box5 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          $(this).children().eq(0).css({
+            opacity: 1
+          })
+        } else {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+
+        }
+      })
+      //打开按钮
+      $('#checked3').removeClass('switch-off').addClass('switch-on')
+      $('#checked3').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      //选择了无
+      if ($(this).index() == 0) {
+        No_zican1 = false
+        Cont2[2] = false
+        obj3.subType = 0
+        Parameter.push(obj3)
+      } else {
+        No_zican1 = true
+        Cont[2] = true
+        Cont2[2] = true
+      }
+      Cont[2] = true
+      bars()
+    })
+    $('.btn-box6 span').on('click', function () {
+      $(this).addClass('actived').siblings().removeClass('actived')
+      $.each($('.btn-box6 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          $(this).children().eq(0).css({
+            opacity: 1
+          })
+        } else {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        }
+      })
+      //打开按钮
+      $('#checked4').removeClass('switch-off').addClass('switch-on')
+      $('#checked4').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      //选择了无
+      if ($(this).index() == 0) {
+        No_zican1 = false
+        Cont2[3] = false
+        obj4.subType = 0
+        Parameter.push(obj4)
+      } else {
+        No_zican1 = true
+        Cont[3] = true
+        Cont2[3] = true
+      }
+      Cont[3] = true
+      bars()
+    })
+    $('.btn-box7 span').on('click', function () {
+      $(this).addClass('actived').siblings().removeClass('actived')
+      $.each($('.btn-box7 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          $(this).children().eq(0).css({
+            opacity: 1
+          })
+        } else {
+          $(this).children().eq(0).css({
+            opacity: 0
+          })
+        }
+      })
+      //打开按钮
+      $('#checked5').removeClass('switch-off').addClass('switch-on')
+      $('#checked5').css({
+        'border-color': 'rgb(100, 189, 99)',
+        'box-shadow': 'rgb(100, 189, 99) 0px 0px 0px 16px inset',
+        'background': 'rgb(100, 189, 99)'
+      })
+      //选择了无
+      if ($(this).index() == 0) {
+        No_zican1 = false
+        Cont2[4] = false
+        obj5.subType = 0
+        Parameter.push(obj5)
+      } else {
+        No_zican1 = true
+        Cont[4] = true
+        Cont2[4] = true
+      }
+      Cont[4] = true
+      bars()
+    })
+    //滑动控制
+    var barW = $('.wrapper #bar1 .bar-box').width()
+    var NumMoney = barW / 100
+    var Money = 0
+    var spW = $('.wrapper #bar1 .bar-box span').width()
+
+    function bars() {
+      if (Cont[0] && Cont2[0]) {
+        //第一个滑块
+        $('.wrapper #bar1 .bar-box').on('click', function (e) {
+          e.stopPropagation()
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+          var x1 = e.pageX - spW
+          if (x1 > barW) {
+            x1 = barW
+          }
+          var updataMoney = Math.floor(x1 / NumMoney)
+          if (x1 < 0) {
+            x1 = 0
+          }
+          $('.wrapper #bar1 .bar-box span').css("left", x1)
+          $('.wrapper #bar1 .bar-box span').prev().css({
+            'width': x1
+          })
+          bar1_num = updataMoney
+          $('.wrapper #bar1 p b').text(updataMoney)
+          var a = `<a>万</a>`
+          $('.wrapper #bar1 p b').append(a)
+          obj1.cost = updataMoney
+        })
+        $('.wrapper #bar1 .bar-box span').on('touchstart', function (e) {
+          var zhi = $(this).offset().left
+          var x = e.originalEvent.touches[0].pageX
+          x = x - zhi
+          $(document).on('touchmove', function (e) {
+            var x1 = e.originalEvent.touches[0].pageX - x
+            //限制滑动区域
+            if (x1 > barW) {
+              x1 = barW
+            }
+            if (x1 < 0) {
+              x1 = 0
+            }
+            //计算滚动条价值
+            var updataMoney = Math.floor(x1 / NumMoney)
+            $('.wrapper #bar1 .bar-box span').css("left", x1)
+            $('.wrapper #bar1 .bar-box span').prev().css({
+              'width': x1
+            })
+            bar1_num = updataMoney
+            $('.wrapper #bar1 p b').text(updataMoney)
+            obj1.cost = updataMoney
+            var a = `<a>万</a>`
+            $('.wrapper #bar1 p b').append(a)
+
+          })
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+        })
+      } else {
+        $('.wrapper #bar1 .bar-box span').css("left", 0)
+        $('.wrapper #bar1 .bar-box span').prev().css({
+          'width': 0
+        })
+        bar1_num = 0
+        $('.wrapper #bar1 p b').text(0)
+        var a = `<a>万</a>`
+        $('.wrapper #bar1 p b').append(a)
+        $('.wrapper #bar1 .bar-box span').unbind('touchstart')
+
+        $('.wrapper .bar .bar-box').unbind('click')
+      }
+      if (Cont[1] && Cont2[1]) {
+        //第二个滑块
+        $('.wrapper #bar2 .bar-box').on('click', function (e) {
+          e.stopPropagation()
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+          var x1 = e.pageX - spW
+          if (x1 > barW) {
+            x1 = barW
+          }
+          //计算滚动条价值
+          var updataMoney = Math.floor(x1 / NumMoney)
+          bar2_num = updataMoney
+          if (x1 < 0) {
+            x1 = 0
+          }
+          $('.wrapper #bar2 .bar-box span').css("left", x1)
+          $('.wrapper #bar2 .bar-box span').prev().css({
+            'width': x1
+          })
+          console.log(bar2, '.......第二个滚动条值')
+          $('.wrapper #bar2 p b').text(updataMoney)
+          var a = `<a>万</a>`
+          $('.wrapper #bar2 p b').append(a)
+          obj2.cost = updataMoney
+        })
+        $('.wrapper #bar2 .bar-box span').on('touchstart', function (e) {
+          var zhi = $(this).offset().left
+          var x = e.originalEvent.touches[0].pageX
+          x = x - zhi
+          $(document).on('touchmove', function (e) {
+            var x1 = e.originalEvent.touches[0].pageX - x
+            //限制滑动区域
+            if (x1 > barW) {
+              x1 = barW
+            }
+            if (x1 < 0) {
+              x1 = 0
+            }
+            var updataMoney = Math.floor(x1 / NumMoney)
+            bar2_num = updataMoney
+            $('.wrapper #bar2 .bar-box span').css("left", x1)
+            $('.wrapper #bar2 .bar-box span').prev().css({
+              'width': x1
+            })
+            $('.wrapper #bar2 p b').text(updataMoney)
+            obj2.cost = updataMoney
+            var a = `<a>万</a>`
+            $('.wrapper #bar2 p b').append(a)
+
+          })
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+        })
+      } else {
+        $('.wrapper #bar2 .bar-box span').css("left", 0)
+        $('.wrapper #bar2 .bar-box span').prev().css({
+          'width': 0
+        })
+        bar2_num = 0
+        $('.wrapper #bar2 p b').text(0)
+        var a = `<a>万</a>`
+        $('.wrapper #bar2 p b').append(a)
+        $('.wrapper #bar2 .bar-box span').unbind('touchstart')
+        $('.wrapper #bar2 .bar-box').unbind('click')
+      }
+      if (Cont[2] && Cont2[2]) {
+        //第三个滑块
+        $('.wrapper #bar3 .bar-box').on('click', function (e) {
+          e.stopPropagation()
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+          var x1 = e.pageX - spW
+          if (x1 > barW) {
+            x1 = barW
+          }
+          //计算滚动条价值
+          var updataMoney = Math.floor(x1 / NumMoney)
+          bar3_num = updataMoney
+          if (x1 < 0) {
+            x1 = 0
+          }
+          $('.wrapper #bar3 .bar-box span').css("left", x1)
+          $('.wrapper #bar3 .bar-box span').prev().css({
+            'width': x1
+          })
+          console.log(bar3, '第三个滚动条值')
+          $('.wrapper #bar3 p b').text(updataMoney)
+          var a = `<a>万</a>`
+          $('.wrapper #bar3 p b').append(a)
+          obj3.cost = updataMoney
+        })
+        $('.wrapper #bar3 .bar-box span').on('touchstart', function (e) {
+          var zhi = $(this).offset().left
+          var x = e.originalEvent.touches[0].pageX
+          x = x - zhi
+          $(document).on('touchmove', function (e) {
+            var x1 = e.originalEvent.touches[0].pageX - x
+            //限制滑动区域
+            if (x1 > barW) {
+              x1 = barW
+            }
+            if (x1 < 0) {
+              x1 = 0
+            }
+            var updataMoney = Math.floor(x1 / NumMoney)
+            bar3_num = updataMoney
+            $('.wrapper #bar3 .bar-box span').css("left", x1)
+            $('.wrapper #bar3 .bar-box span').prev().css({
+              'width': x1
+            })
+            $('.wrapper #bar3 p b').text(updataMoney)
+            obj3.cost = updataMoney
+            var a = `<a>万</a>`
+            $('.wrapper #bar3 p b').append(a)
+
+          })
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+        })
+      } else {
+        $('.wrapper #bar3 .bar-box span').css("left", 0)
+        $('.wrapper #bar3 .bar-box span').prev().css({
+          'width': 0
+        })
+        bar3_num = 0
+        $('.wrapper #bar3 p b').text(0)
+        var a = `<a>万</a>`
+        $('.wrapper #bar3 p b').append(a)
+        $('.wrapper #bar3 .bar-box span').unbind('touchstart')
+        $('.wrapper #bar3 .bar-box').unbind('click')
+      }
+      if (Cont[3] && Cont2[3]) {
+        //第四个滑块
+        $('.wrapper #bar4 .bar-box').on('click', function (e) {
+          e.stopPropagation()
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+          var x1 = e.pageX - spW
+          if (x1 > barW) {
+            x1 = barW
+          }
+          //计算滚动条价值
+          var updataMoney = Math.floor(x1 / NumMoney)
+          bar4_num = updataMoney
+          if (x1 < 0) {
+            x1 = 0
+          }
+          $('.wrapper #bar4 .bar-box span').css("left", x1)
+          $('.wrapper #bar4 .bar-box span').prev().css({
+            'width': x1
+          })
+          $('.wrapper #bar4 p b').text(updataMoney)
+          obj4.cost = updataMoney
+          var a = `<a>万</a>`
+          $('.wrapper #bar4 p b').append(a)
+        })
+        $('.wrapper #bar4 .bar-box span').on('touchstart', function (e) {
+          var zhi = $(this).offset().left
+          var x = e.originalEvent.touches[0].pageX
+          x = x - zhi
+          $(document).on('touchmove', function (e) {
+            var x1 = e.originalEvent.touches[0].pageX - x
+            //限制滑动区域
+            if (x1 > barW) {
+              x1 = barW
+            }
+            if (x1 < 0) {
+              x1 = 0
+            }
+            var updataMoney = Math.floor(x1 / NumMoney)
+            bar4_num = updataMoney
+            $('.wrapper #bar4 .bar-box span').css("left", x1)
+            $('.wrapper #bar4 .bar-box span').prev().css({
+              'width': x1
+            })
+            $('.wrapper #bar4 p b').text(updataMoney)
+            obj4.cost = updataMoney
+            var a = `<a>万</a>`
+            $('.wrapper #bar4 p b').append(a)
+
+          })
+          $(document).on('touchend', function (e) {
+            $(this).off("touchmove")
+          })
+        })
+      } else {
+        $('.wrapper #bar4 .bar-box span').css("left", 0)
+        $('.wrapper #bar4 .bar-box span').prev().css({
+          'width': 0
+        })
+        bar4_num = 0
+        $('.wrapper #bar4 p b').text(0)
+        var a = `<a>万</a>`
+        $('.wrapper #bar4 p b').append(a)
+        $('.wrapper #bar4 .bar-box span').unbind('touchstart')
+        $('.wrapper #bar4 .bar-box').unbind('click')
+      }
+      // if (Cont[4] && Cont2[4]) {
+      //   //第五个滑块
+      //   $('.wrapper #bar5 .bar-box span').on('touchstart', function (e) {
+      //     var zhi = $(this).offset().left
+      //     var x = e.originalEvent.touches[0].pageX
+      //     x = x - zhi
+      //     $(document).on('touchmove', function (e) {
+      //       var x1 = e.originalEvent.touches[0].pageX - x
+      //       //限制滑动区域
+      //       if (x1 > barW) {
+      //         x1 = barW
+      //       }
+      //       if (x1 < 0) {
+      //         x1 = 0
+      //       }
+      //       var updataMoney = Math.floor(x1 / NumMoney)
+      //       console.log(updataMoney)
+      //       $('.wrapper #bar5 .bar-box span').css("left", x1)
+      //       $('.wrapper #bar5 .bar-box span').prev().css({
+      //         'width': x1
+      //       })
+      //       $('.wrapper #bar5 p b').text(updataMoney)
+      //       var a = `<a>万</a>`
+      //       $('.wrapper #bar5 p b').append(a)
+
+      //     })
+      //     $(document).on('touchend', function (e) {
+      //       $(this).off("touchmove")
+      //     })
+      //   })
+      // } else {
+      //   $('.wrapper #bar5 .bar-box span').css("left", 0)
+      //   $('.wrapper #bar5 .bar-box span').prev().css({
+      //     'width': 0
+      //   })
+      //   bar5_num = 0
+      //   $('.wrapper #bar5 p b').text(0)
+      //   var a = `<a>万</a>`
+      //   $('.wrapper #bar5 p b').append(a)
+      //   $('.wrapper #bar5 .bar-box span').unbind('touchstart')
+      // }
+    }
+
+    //提交按钮
+    $('.footer').on('click', function () {
+      cont1_ = 0
+      cont1_1 = 0
+      //验证第一项
+      $.each($('.btn-box1 span'), function (a, b) {
+        if ($(b).hasClass('actived')) {
+          if (!a == 0) {
+            $.each($('.btn-box2 span'), function (a, b) {
+              if ($(b).hasClass('actived')) {
+                console.log($('#oneB').text())
+                if ($('#oneB').text() == '0万') {
+                  text = '请估算家庭房屋财产价值'
+                  init1 = false
+                } else {
+                  init1 = true
+                }
+              } else {
+                cont1_1++
+                console.log(cont1_1, '.......cont1_')
+                console.log($('.btn-box2 span').length, 'lensssssssssssssssss')
+                if (cont1_1 == $('.btn-box2 span').length) {
+                  init1 = false
+                  cont1_1 = 0
+                  text = '请完善房屋状态'
+                }
+              }
+            })
+          } else {
+            init1 = true
+          }
+        } else {
+          cont1_++
+          if (cont1_ == $('.btn-box1 span').length) {
+            init1 = true
+          }
+        }
+      })
+      if (init1) {
+        //验证第二项
+        cont2_ = 0
+        cont2_2 = 0
+        $.each($('.btn-box3 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            if (!a == 0) {
+              $.each($('.btn-box4 span'), function (a, b) {
+                if ($(b).hasClass('actived')) {
+                  console.log($('#twoB').text())
+                  if ($('#twoB').text() == '0万') {
+                    text = '请估算家庭车辆财产价值'
+                    init2 = false
+                  } else {
+                    init2 = true
+                  }
+                } else {
+                  cont2_2++
+                  if (cont2_2 == $('.btn-box4 span').length) {
+                    init2 = false
+                    cont2_2 = 0
+                    text = '请完善车辆状态'
+                  }
+                }
+              })
+            } else {
+              init2 = true
+            }
+          } else {
+            cont2_++
+            if (cont2_ == $('.btn-box3 span').length) {
+              init2 = true
+            }
+          }
+        })
+      }
+      if (init2) {
+
+        //验证第三项
+        $.each($('.btn-box5 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            if (a == 0) {
+              init3 = true
+              return false
+            }
+            if ($('#theerB').text() == '0万') {
+              text = '请估算家庭金融资产价值'
+              init3 = false
+            } else {
+              init3 = true
+            }
+          } else {
+            cont3_++
+            if (cont3_ == $('.btn-box5 span').length) {
+              init3 = true
+            }
+          }
+        })
+      }
+      if (init3) {
+        //验证第四项
+        $.each($('.btn-box6 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            if (a == 0) {
+              init4 = true
+              return false
+            }
+            if ($('#forB').text() == '0万') {
+              text = '请估算患者保险价值'
+              init4 = false
+            } else {
+              init4 = true
+            }
+          } else {
+            cont4_++
+            if (cont4_ == $('.btn-box6 span').length) {
+              init4 = true
+            }
+          }
+        })
+      }
+      if (init4) {
+        //验证第五项
+        $.each($('.btn-box7 span'), function (a, b) {
+          if ($(b).hasClass('actived')) {
+            console.log($(b).text())
+          }
+        })
+      }
+      if (!init1) {
+        $('.mask-box').hide()
+        $('.mask-box2').show()
+        $('.mask-box2 h6').text(text)
+        $('.mask').show()
+      } else if (!init2) {
+        $('.mask-box').hide()
+        $('.mask-box2').show()
+        $('.mask-box2 h6').text(text)
+        $('.mask').show()
+      } else if (!init3) {
+        $('.mask-box').hide()
+        $('.mask-box2').show()
+        $('.mask-box2 h6').text(text)
+        $('.mask').show()
+      } else if (!init4) {
+        $('.mask-box').hide()
+        $('.mask-box2').show()
+        $('.mask-box2 h6').text(text)
+        $('.mask').show()
+      } else {
+        //成功
+        console.log(bar1_num, bar2_num, bar3_num, bar4_num, '.............滑块值')
+        //====================================================================================one========================================
+        //获取第一项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box1 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var num_index = 0
+            console.log($(index).text(), '......第一项选择的值')
+            obj1.mainType = 1
+            if ($(index).text() == '无') {
+              num_index = 0
+            } else if ($(index).text() == '1套') {
+              num_index = 1
+            } else if ($(index).text() == '2套') {
+              num_index = 2
+            } else if ($(index).text() == '3套以上') {
+              num_index = 3
+            }
+            obj1.amount = num_index
+            obj1.subType = ''
+          }
+        })
+        //获取第二项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box2 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var statics = ''
+            console.log($(index).text(), '......第二项选择的值')
+            if ($(index).text() == '未变卖') {
+              statics = 0
+            } else {
+              statics = 1
+            }
+            obj1.state = statics
+            if (Parameter.indexOf(obj1) == -1) {
+              Parameter.push(obj1)
+            } else {
+              console.log(Parameter.indexOf(obj1))
+            }
+          }
+        })
+        //====================================================================================one========================================
+        //获取第三项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box3 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            console.log($(index).text(), '......第三项选择的值')
+            var num_index = ''
+            obj2.mainType = 2
+            if ($(index).text() == '无') {
+              num_index = 0
+            } else if ($(index).text() == '1辆') {
+              num_index = 1
+            } else if ($(index).text() == '2辆') {
+              num_index = 2
+            } else if ($(index).text() == '3辆以上') {
+              num_index = 3
+            }
+            obj2.amount = num_index
+            obj2.subType = ''
+          }
+        })
+        //获取第四项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box4 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var statics = ''
+            console.log($(index).text(), '......第四项选择的值')
+            if ($(index).text() == '未变卖') {
+              statics = 0
+            } else {
+              statics = 1
+            }
+            obj2.state = statics
+            if (Parameter.indexOf(obj2) == -1) {
+              Parameter.push(obj2)
+            } else {
+              console.log(Parameter.indexOf(obj2))
+            }
+          }
+        })
+        //====================================================================================one========================================
+        //获取第五项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box5 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var active_data = ''
+            console.log($(index).text(), '......第五项选择的值')
+            obj3.mainType = 3
+            if ($(index).text() == '无') {
+              active_data = 0
+            } else if ($(index).text() == '银行存款') {
+              active_data = 1
+            } else if ($(index).text() == '存款+投资理财') {
+              active_data = 2
+            }
+            obj3.state = ''
+            obj3.amount = ''
+            obj3.subType = active_data
+            if (Parameter.indexOf(obj3) == -1) {
+              Parameter.push(obj3)
+            } else {
+              console.log(Parameter.indexOf(obj3))
+            }
+          }
+        })
+        //====================================================================================one========================================
+
+        //获取第六项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box6 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var active_data = ''
+            console.log($(index).text(), '......第六项选择的值')
+            obj4.mainType = 4
+            if ($(index).text() == '无') {
+              active_data = 0
+            } else if ($(index).text() == '按时缴纳医保') {
+              active_data = 3
+            } else if ($(index).text() == '医保+商业重疾保险') {
+              active_data = 4
+            }
+            obj4.state = ''
+            obj4.amount = ''
+            obj4.subType = active_data
+            if (Parameter.indexOf(obj4) == -1) {
+              Parameter.push(obj4)
+            } else {
+              console.log(Parameter.indexOf(obj4))
+            }
+          }
+        })
+        //====================================================================================one========================================
+        //获取第七项选中值
+        $.each($('.wrapper .checkboxs-btn .btn-box7 span'), function (item, index) {
+          if ($(index).attr('class')) {
+            var active_data = ''
+            console.log($(index).text(), '......第七项选择的值')
+            obj5.mainType = 5
+            if ($(index).text() == '无') {
+              active_data = 0
+            } else if ($(index).text() == '城镇低保') {
+              active_data = 5
+            } else if ($(index).text() == '农村低保') {
+              active_data = 6
+            } else if ($(index).text() == '农村五保') {
+              active_data = 7
+            } else if ($(index).text() == '政府医疗救助') {
+              active_data = 8
+            }
+            obj5.state = ''
+            obj5.amount = ''
+            obj5.subType = active_data
+            obj5.cost = ''
+            if (Parameter.indexOf(obj5) == -1) {
+              Parameter.push(obj5)
+            } else {
+              console.log(Parameter.indexOf(obj5))
+            }
+          }
+        })
+        $('.mask').show()
+        $('.mask-box').show()
+        $('.mask-box2').hide()
+        console.log(Parameter, '..................最终所添加')
+      }
+    })
+    $('#hideMask').on('click', function () {
+      $('.mask').hide()
+    })
+    $('#ok').on('click', function () {
+      //第一项图片
+      if (newIMG0) {
+        newstr0 = ''
+        $.each(contDate0, function (a, b) {
+          newstr0 += b + ','
+        })
+      } else {
+        newstr0 = str0
+      }
+      obj1.serverids = newstr0
+      //第二项图片
+      if (newIMG1) {
+        newstr1 = ''
+        $.each(contDate1, function (a, b) {
+          newstr1 += b + ','
+        })
+      } else {
+        newstr1 = str1
+      }
+      obj2.serverids = newstr1
+      //第三项图片
+      if (newIMG2) {
+        newstr2 = ''
+        $.each(contDate2, function (a, b) {
+          newstr2 += b + ','
+        })
+      } else {
+        newstr2 = str2
+      }
+      obj3.serverids = newstr2
+      //第四项图片
+      if (newIMG3) {
+        newstr3 = ''
+        $.each(contDate3, function (a, b) {
+          newstr3 += b + ','
+        })
+      } else {
+        newstr3 = str3
+      }
+      obj4.serverids = newstr3
+      //第五项图片
+      if (newIMG4) {
+        newstr4 = ''
+        $.each(contDate4, function (a, b) {
+          newstr4 += b + ','
+        })
+      } else {
+        newstr4 = str4
+      }
+      obj5.serverids = newstr4
+      $('.mask').hide()
+      $('.masks2').show()
+      $.ajax({
+        url: activeurl + '/api/credit/post',
+        type: 'post',
+        dataType: "json",
+        contentType: 'application/json;charset=utf-8', //设置请求头信息
+        data: JSON.stringify(Parameter),
+        success: function (res) {
+          console.log(res, '...........成功的返回值')
+          if (res) {
+            $('.masks2').hide()
+            $('.masktips').show()
+            $('#tips_text').text('提交成功')
+            $('#ok_masktips').on('click', function () {
+              window.location.href = `${activeurl}/htmls/buchongzengxin/detail?id=${prjId}`
+              $('.masktips').hide()
+            })
+            //alert('提交成功')
+            //window.location.href = `${activeurl}/htmls/buchongzengxin/detail?id=${prjId}`
+          } else {
+            $('.masktips').show()
+            $('#tips_text').text(res)
+            $('#ok_masktips').on('click', function () {
+              $('.masktips').hide()
+            })
+            //alert(res)
+          }
+        },
+        error: function (rej) {
+          $('.masks2').hide()
+          console.log(rej, '...........失败的返回值')
+          $('.masktips').show()
+            $('#tips_text').text(rej.responseJSON.msg)
+            $('#ok_masktips').on('click', function () {
+              $('.masktips').hide()
+            })
+        }
+      })
+    })
+    $('#ok2').on('click', function () {
+      $('.mask').hide()
+    })
+
+    //第一个上传图片的按钮
+    $('.wrapper .addpic-box #create-img0 .updata-btn').on('click', function () {
+      //轮询
+      setInterval(function () {
+        len = $('#create-img0 .new-create .updata-imgs').length
+        if (len < 8) {
+          flag = true
+        } else {
+          flag = false
+        }
+      }, 100)
+      if (flag) {
+        getwxInfo()
+      } else {
+        return false
+      }
+      //获取微信信息
+      function getwxInfo() {
+        var a;
+        $.ajax({
+          url: activeurl + "/api/common/get/sign",
+          type: "get",
+          async: false, //此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+          data: {
+            url: window.location.href
+          },
+          dataType: "json",
+          success: function (data) {
+            a = data;
+            console.log(a, 'aaaaaaaaaaaaaaaaaaaaaaaaa')
+          }
+        });
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: a.appId, // 必填，公众号的唯一标识
+          //appId:'wxb8021c87fe1d4a8b',
+          timestamp: a.timestamp, // 必填，生成签名的时间戳
+          nonceStr: a.nonceStr, // 必填，生成签名的随机串
+          signature: a.signature, // 必填，签名，见附录1
+          jsApiList: ["chooseImage",
+            "previewImage",
+            "uploadImage",
+            "downloadImage",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage"
+          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+      }
+      // 微信上传图片
+      wx.chooseImage({
+        count: 8 - len, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          //解决IOS无法上传的坑
+          if (localIds.indexOf("wxlocalresource") != -1) {
+            localIds = localIds.replace("wxlocalresource", "wxLocalResource");
+          }
+          syncUpload(localIds)
+        }
+      });
+      var syncUpload = function (localIds) {
+        var localId = localIds.pop();
+        console.log(localId, '....localId可以作为img标签的src属性显示图片')
+        // console.log(updatabtn)
+        wx.uploadImage({
+          localId: localId,
+          isShowProgressTips: 1,
+          success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            //其他对serverId做处理的代码
+            if (localIds.length > 0) {
+              syncUpload(localIds);
+            }
+            console.log(serverId, '图片的服务器ID')
+            str0 += serverId + ','
+            contDate0.push(serverId)
+          }
+        })
+        //获取换取的本地图片接口
+        wx.getLocalImgData({
+          localId: localId, // 图片的localID
+          success: function (res) {
+            var localData = res.localData;
+            if (localData.indexOf('data:image') != 0) {
+              //判断是否有这样的头部
+              localData = 'data:image/jpeg;base64,' + localData
+            }
+            localData = localData.replace(/\r|\n/g, '').replace('data:image/jgp', 'data:image/jpeg')
+            var result =
+              '<span><img src="https://imgs.bihubao.com/Public/images/contribution/contribution/closeimg.png"/></span><img id="img" class="showimg" src="' +
+              localData + '" />';
+            var div = document.createElement('div');
+            div.className = 'updata-imgs';
+            div.innerHTML = result;
+            $('#create-img0 .new-create').append(div)
+            //图片预览
+            $('#create-img0 .new-create .updata-imgs .showimg').unbind('click').on('click', function () {
+              var imgUrl = $(this).attr('src')
+              $('.masks').show()
+              $('.masks img').attr('src', imgUrl)
+            })
+            //图片删除
+            $('#create-img0 .new-create .updata-imgs span').unbind('click').on('click', function () {
+              var int = $(this).parent().index()
+              contDate0.splice(int, 1)
+              $('#create-img0 .new-create .updata-imgs').eq(int).remove()
+              newIMG0 = true
+              if ($('#create-img0 .new-create .updata-imgs').length == 0) {
+                newIMG0 = false
+              }
+            })
+          }
+        });
+      }
+    })
+    //第二个上传图片的按钮
+    $('.wrapper .addpic-box #create-img1 .updata-btn').on('click', function () {
+      //轮询
+      setInterval(function () {
+        len2 = $('#create-img1 .new-create .updata-imgs').length
+        if (len2 < 8) {
+          flag = true
+        } else {
+          flag = false
+        }
+      }, 100)
+      if (flag) {
+        getwxInfo()
+      } else {
+        return false
+      }
+      //获取微信信息
+      function getwxInfo() {
+        var a;
+        $.ajax({
+          url: activeurl + "/api/common/get/sign",
+          type: "get",
+          async: false, //此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+          data: {
+            url: window.location.href
+          },
+          dataType: "json",
+          success: function (data) {
+            a = data;
+            console.log(a, 'aaaaaaaaaaaaaaaaaaaaaaaaa')
+          }
+        });
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: a.appId, // 必填，公众号的唯一标识
+          //appId:'wxb8021c87fe1d4a8b',
+          timestamp: a.timestamp, // 必填，生成签名的时间戳
+          nonceStr: a.nonceStr, // 必填，生成签名的随机串
+          signature: a.signature, // 必填，签名，见附录1
+          jsApiList: ["chooseImage",
+            "previewImage",
+            "uploadImage",
+            "downloadImage",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage"
+          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+      }
+      // 微信上传图片
+      wx.chooseImage({
+        count: 8 - len2, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          //解决IOS无法上传的坑
+          if (localIds.indexOf("wxlocalresource") != -1) {
+            localIds = localIds.replace("wxlocalresource", "wxLocalResource");
+          }
+          syncUpload(localIds)
+        }
+      });
+      var syncUpload = function (localIds) {
+        var localId = localIds.pop();
+        console.log(localId, '....localId可以作为img标签的src属性显示图片')
+        // console.log(updatabtn)
+        wx.uploadImage({
+          localId: localId,
+          isShowProgressTips: 1,
+          success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            //其他对serverId做处理的代码
+            if (localIds.length > 0) {
+              syncUpload(localIds);
+            }
+            console.log(serverId, '图片的服务器ID')
+            str1 += serverId + ','
+            contDate1.push(serverId)
+          }
+        })
+        //获取换取的本地图片接口
+        wx.getLocalImgData({
+          localId: localId, // 图片的localID
+          success: function (res) {
+            var localData = res.localData;
+            if (localData.indexOf('data:image') != 0) {
+              //判断是否有这样的头部
+              localData = 'data:image/jpeg;base64,' + localData
+            }
+            localData = localData.replace(/\r|\n/g, '').replace('data:image/jgp',
+              'data:image/jpeg')
+            var result =
+              '<span><img src="https://imgs.bihubao.com/Public/images/contribution/contribution/closeimg.png"/></span><img id="img" class="showimg" src="' +
+              localData + '" />';
+            var div = document.createElement('div');
+            div.className = 'updata-imgs';
+            div.innerHTML = result;
+            $('#create-img1 .new-create').append(div)
+            //图片预览
+            $('#create-img1 .new-create .updata-imgs .showimg').unbind('click').on('click', function () {
+              var imgUrl = $(this).attr('src')
+              $('.masks').show()
+              $('.masks img').attr('src', imgUrl)
+            })
+            //图片删除
+            $('#create-img1 .new-create .updata-imgs span').unbind('click').on('click',
+              function () {
+                var int = $(this).parent().index()
+                contDate1.splice(int, 1)
+                $('#create-img1 .new-create .updata-imgs').eq(int).remove()
+                newIMG1 = true
+                if ($('#create-img1 .new-create .updata-imgs').length == 0) {
+                  newIMG1 = false
+                }
+              })
+          }
+        });
+      }
+    })
+    //第三个上传图片的按钮
+    $('.wrapper .addpic-box #create-img2 .updata-btn').on('click', function () {
+      //轮询
+      setInterval(function () {
+        len2 = $('#create-img2 .new-create .updata-imgs').length
+        if (len2 < 8) {
+          flag2 = true
+        } else {
+          flag2 = false
+        }
+      }, 100)
+      if (flag2) {
+        getwxInfo()
+      } else {
+        return false
+      }
+      //获取微信信息
+      function getwxInfo() {
+        var a;
+        $.ajax({
+          url: activeurl + "/api/common/get/sign",
+          type: "get",
+          async: false, //此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+          data: {
+            url: window.location.href
+          },
+          dataType: "json",
+          success: function (data) {
+            a = data;
+            console.log(a, 'aaaaaaaaaaaaaaaaaaaaaaaaa')
+          }
+        });
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: a.appId, // 必填，公众号的唯一标识
+          //appId:'wxb8021c87fe1d4a8b',
+          timestamp: a.timestamp, // 必填，生成签名的时间戳
+          nonceStr: a.nonceStr, // 必填，生成签名的随机串
+          signature: a.signature, // 必填，签名，见附录1
+          jsApiList: ["chooseImage",
+            "previewImage",
+            "uploadImage",
+            "downloadImage",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage"
+          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+      }
+      // 微信上传图片
+      wx.chooseImage({
+        count: 8 - len2, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          //解决IOS无法上传的坑
+          if (localIds.indexOf("wxlocalresource") != -1) {
+            localIds = localIds.replace("wxlocalresource", "wxLocalResource");
+          }
+          syncUpload(localIds)
+        }
+      });
+      var syncUpload = function (localIds) {
+        var localId = localIds.pop();
+        console.log(localId, '....localId可以作为img标签的src属性显示图片')
+        // console.log(updatabtn)
+        wx.uploadImage({
+          localId: localId,
+          isShowProgressTips: 1,
+          success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            //其他对serverId做处理的代码
+            if (localIds.length > 0) {
+              syncUpload(localIds);
+            }
+            console.log(serverId, '图片的服务器ID')
+            str2 += serverId + ','
+            contDate2.push(serverId)
+          }
+        })
+        //获取换取的本地图片接口
+        wx.getLocalImgData({
+          localId: localId, // 图片的localID
+          success: function (res) {
+            var localData = res.localData;
+            if (localData.indexOf('data:image') != 0) {
+              //判断是否有这样的头部
+              localData = 'data:image/jpeg;base64,' + localData
+            }
+            localData = localData.replace(/\r|\n/g, '').replace('data:image/jgp',
+              'data:image/jpeg')
+            var result =
+              '<span><img src="https://imgs.bihubao.com/Public/images/contribution/contribution/closeimg.png"/></span><img id="img" class="showimg" src="' +
+              localData + '" />';
+            var div = document.createElement('div');
+            div.className = 'updata-imgs';
+            div.innerHTML = result;
+            $('#create-img2 .new-create').append(div)
+            //图片预览
+            $('#create-img2 .new-create .updata-imgs .showimg').unbind('click').on('click', function () {
+              var imgUrl = $(this).attr('src')
+              $('.masks').show()
+              $('.masks img').attr('src', imgUrl)
+            })
+            //图片删除
+            $('#create-img2 .new-create .updata-imgs span').unbind('click').on('click',
+              function () {
+                var int = $(this).parent().index()
+                contDate2.splice(int, 1)
+                $('#create-img2 .new-create .updata-imgs').eq(int).remove()
+                newIMG2 = true
+                if ($('#create-img2 .new-create .updata-imgs').length == 0) {
+                  newIMG2 = false
+                }
+              })
+          }
+        });
+      }
+    })
+    //第四个按钮
+    $('.wrapper .addpic-box #create-img3 .updata-btn').on('click', function () {
+      //轮询
+      setInterval(function () {
+        len3 = $('#create-img3 .new-create .updata-imgs').length
+        if (len3 < 8) {
+          flag3 = true
+        } else {
+          flag3 = false
+        }
+      }, 100)
+      if (flag3) {
+        getwxInfo()
+      } else {
+        return false
+      }
+      //获取微信信息
+      function getwxInfo() {
+        var a;
+        $.ajax({
+          url: activeurl + "/api/common/get/sign",
+          type: "get",
+          async: false, //此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+          data: {
+            url: window.location.href
+          },
+          dataType: "json",
+          success: function (data) {
+            a = data;
+            console.log(a, 'aaaaaaaaaaaaaaaaaaaaaaaaa')
+          }
+        });
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: a.appId, // 必填，公众号的唯一标识
+          //appId:'wxb8021c87fe1d4a8b',
+          timestamp: a.timestamp, // 必填，生成签名的时间戳
+          nonceStr: a.nonceStr, // 必填，生成签名的随机串
+          signature: a.signature, // 必填，签名，见附录1
+          jsApiList: ["chooseImage",
+            "previewImage",
+            "uploadImage",
+            "downloadImage",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage"
+          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+      }
+      // 微信上传图片
+      wx.chooseImage({
+        count: 8 - len3, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res
+            .localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          //解决IOS无法上传的坑
+          if (localIds.indexOf("wxlocalresource") != -1) {
+            localIds = localIds.replace("wxlocalresource", "wxLocalResource");
+          }
+          syncUpload(localIds)
+        }
+      });
+      var syncUpload = function (localIds) {
+        var localId = localIds.pop();
+        console.log(localId, '....localId可以作为img标签的src属性显示图片')
+        // console.log(updatabtn)
+        wx.uploadImage({
+          localId: localId,
+          isShowProgressTips: 1,
+          success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            //其他对serverId做处理的代码
+            if (localIds.length > 0) {
+              syncUpload(localIds);
+            }
+            console.log(serverId, '图片的服务器ID')
+            str3 += serverId + ','
+            contDate3.push(serverId)
+          }
+        })
+        //获取换取的本地图片接口
+        wx.getLocalImgData({
+          localId: localId, // 图片的localID
+          success: function (res) {
+            var localData = res.localData;
+            if (localData.indexOf('data:image') != 0) {
+              //判断是否有这样的头部
+              localData = 'data:image/jpeg;base64,' + localData
+            }
+            localData = localData.replace(/\r|\n/g, '').replace('data:image/jgp', 'data:image/jpeg')
+            var result =
+              '<span><img src="https://imgs.bihubao.com/Public/images/contribution/contribution/closeimg.png"/></span><img id="img" class="showimg" src="' +
+              localData + '" />';
+            var div = document.createElement('div');
+            div.className = 'updata-imgs';
+            div.innerHTML = result;
+            $('#create-img3 .new-create').append(div)
+            //图片预览
+            $('#create-img3 .new-create .updata-imgs .showimg').unbind('click').on('click', function () {
+              var imgUrl = $(this).attr('src')
+              $('.masks').show()
+              $('.masks img').attr('src', imgUrl)
+            })
+            //图片删除
+            $('#create-img3 .new-create .updata-imgs span').unbind('click').on('click', function () {
+              var int = $(this).parent().index()
+              contDate3.splice(int, 1)
+              $('#create-img3 .new-create .updata-imgs').eq(int).remove()
+              newIMG3 = true
+              if ($('#create-img3 .new-create .updata-imgs').length ==
+                0) {
+                newIMG3 = false
+              }
+            })
+          }
+        });
+      }
+    })
+    //第五个按钮
+    $('.wrapper .addpic-box #create-img4 .updata-btn').on('click', function () {
+      //轮询
+      setInterval(function () {
+        len4 = $('#create-img4 .new-create .updata-imgs').length
+        if (len4 < 8) {
+          flag4 = true
+        } else {
+          flag4 = false
+        }
+      }, 100)
+      if (flag4) {
+        getwxInfo()
+      } else {
+        return false
+      }
+      //获取微信信息
+      function getwxInfo() {
+        var a;
+        $.ajax({
+          url: activeurl + "/api/common/get/sign",
+          type: "get",
+          async: false, //此处需要注意的是要想获取ajax返回的值这个async属性必须设置成同步的，否则获取不到返回值
+          data: {
+            url: window.location.href
+          },
+          dataType: "json",
+          success: function (data) {
+            a = data;
+            console.log(a, 'aaaaaaaaaaaaaaaaaaaaaaaaa')
+          }
+        });
+        wx.config({
+          debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: a.appId, // 必填，公众号的唯一标识
+          //appId:'wxb8021c87fe1d4a8b',
+          timestamp: a.timestamp, // 必填，生成签名的时间戳
+          nonceStr: a.nonceStr, // 必填，生成签名的随机串
+          signature: a.signature, // 必填，签名，见附录1
+          jsApiList: ["chooseImage",
+            "previewImage",
+            "uploadImage",
+            "downloadImage",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage"
+          ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+      }
+      // 微信上传图片
+      wx.chooseImage({
+        count: 8 - len4, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+          var localIds = res
+            .localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+          //解决IOS无法上传的坑
+          if (localIds.indexOf("wxlocalresource") != -1) {
+            localIds = localIds.replace("wxlocalresource",
+              "wxLocalResource");
+          }
+          syncUpload(localIds)
+        }
+      });
+      var syncUpload = function (localIds) {
+        var localId = localIds.pop();
+        console.log(localId, '....localId可以作为img标签的src属性显示图片')
+        // console.log(updatabtn)
+        wx.uploadImage({
+          localId: localId,
+          isShowProgressTips: 1,
+          success: function (res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            //其他对serverId做处理的代码
+            if (localIds.length > 0) {
+              syncUpload(localIds);
+            }
+            console.log(serverId, '图片的服务器ID')
+            str4 += serverId + ','
+            contDate4.push(serverId)
+            if (newIMG4) {
+              $.each(contDate4, function (a, b) {
+                newstr4 += b + ','
+              })
+            } else {
+              newstr4 = str4
+            }
+            obj5.serverids = newstr4
+          }
+        })
+        //获取换取的本地图片接口
+        wx.getLocalImgData({
+          localId: localId, // 图片的localID
+          success: function (res) {
+            // var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+            // console.log(localData)
+            var localData = res.localData;
+            if (localData.indexOf('data:image') != 0) {
+              //判断是否有这样的头部
+              localData = 'data:image/jpeg;base64,' + localData
+            }
+            localData = localData.replace(/\r|\n/g, '').replace(
+              'data:image/jgp', 'data:image/jpeg')
+            var result =
+              '<span><img src="https://imgs.bihubao.com/Public/images/contribution/contribution/closeimg.png"/></span><img id="img" class="showimg" src="' +
+              localData + '" />';
+            var div = document.createElement('div');
+            div.className = 'updata-imgs';
+            div.innerHTML = result;
+            $('#create-img4 .new-create').append(div)
+            //图片预览
+            $('#create-img4 .new-create .updata-imgs .showimg').unbind('click').on('click', function () {
+              var imgUrl = $(this).attr('src')
+              $('.masks').show()
+              $('.masks img').attr('src', imgUrl)
+            })
+            //图片删除
+            $('#create-img4 .new-create .updata-imgs span').unbind(
+              'click').on('click', function () {
+                var int = $(this).parent().index()
+                contDate4.splice(int, 1)
+                $('#create-img4 .new-create .updata-imgs').eq(int)
+                  .remove()
+                newIMG4 = true
+                if ($('#create-img4 .new-create .updata-imgs')
+                  .length == 0) {
+                  newIMG4 = false
+                }
+              })
+          }
+        });
+      }
+    })
+    $('.masks').on('click', function () {
+      $('.masks').hide()
+    });
+  </script>
+  <script>
+    $(function () {
+      function limitTxt(obj, num) {
+        String.prototype.len = function () {
+          return this.replace(/[^\x00-\xff]/g, "xx").length;
+        }
+        var $h2Limit = $("." + obj);
+        for (var i = 0; i < $h2Limit.length; i++) {
+          if (($h2Limit[i].innerText.len() / 2) > num) {
+            var before = $h2Limit[i].innerText.substring(0, num);
+            var res = before + "...";
+            $h2Limit[i].innerText = res;
+          } else {
+            $h2Limit[i].innerText = $h2Limit[i].innerText;
+          }
+        }
+      }
+      limitTxt("title_txt", 6);
+
+      //获取url中参数的函数
+      function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var q = window.location.pathname.substr(1).match(reg_rewrite);
+        if (r != null) {
+          return unescape(r[2]);
+        } else if (q != null) {
+          return unescape(q[2]);
+        } else {
+          return null;
+        }
+      }
+      // var activeurl="http://192.168.1.157";
+      // //查询授权人的姓名
+      $.ajax({
+        url: activeurl + "/api/user-autho/authorizer",
+        type: "get",
+        async: false,
+        dataType: "text",
+        success: function (result) {
+          // console.log(result);
+          // result="yayayay"
+          if (result == "未授权") {
+            $(".float_header").hide();
+          }
+          $(".title_txt").html(result);
+        }
+      });
+      // 退出编辑
+      $(".quit_edit").click(function () {
+        $.ajax({
+          url: activeurl + "/api/user-autho/quit",
+          type: "get",
+          async: false,
+          dataType: "text",
+          success: function (result) {
+            console.log(result);
+            window.open(activeurl + "/htmls/authorize/apply", "_self");
+          }
+        });
+      });
+    })
+  </script>
+
+</body>
+
+</html>

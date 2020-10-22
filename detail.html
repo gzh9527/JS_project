@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <title>补充增信-已提交</title>
+  <link rel="stylesheet" href="https://imgs.bihubao.com/Public/css/NewUser/reset.css?v0.1">
+  <link rel="stylesheet" type="text/css" media="all"
+    href="https://imgs.bihubao.com/Public/css/buchongzengxin/Detail/detail.css?v-3">
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    display: none;
+  }
+
+  .mask img {
+    width: 80%;
+    height: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  .wrapper .msg-one p span img {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-left: .3rem;
+    margin-top: .2rem;
+  }
+</style>
+
+<body style="width:100%;height:100%;overflow-y:hidden;">
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/initiatorjs/jquery.min.js"></script>
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/add-js/reset.js"></script>
+  <div class="wrapper">
+    <div class="headers">
+      <h6>患者增信</h6>
+      <p>如实填写将会获取捐款人的信任</p>
+    </div>
+    <!--家庭房屋财产状况-->
+    <!-- <div class="msg-one">
+      <h6>家庭房屋财产状况</h6>
+      <p>
+        <a>数量</a>
+        <b id="num1_1">1套</b>
+      </p>
+      <p>
+        <a>状态</a>
+        <b id="num1_2">未变更</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num1_3">20万</b>
+      </p>
+      <p>
+        <a>房屋资产证明</a>
+        <span id="one">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+        </span>
+      </p>
+    </div> -->
+    <!--家庭车辆财产状况-->
+    <!-- <div class="msg-one">
+      <h6>家庭车辆财产状况</h6>
+      <p>
+        <a>数量</a>
+        <b id="num2_1">1辆</b>
+      </p>
+      <p>
+        <a>状态</a>
+        <b id="num2_2">未变更</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num2_3">20万</b>
+      </p>
+      <p>
+        <a>房屋资产证明</a>
+        <span id="two">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+        </span>
+      </p>
+    </div> -->
+    <!--家庭金融资产状况-->
+    <!-- <div class="msg-one">
+      <h6>家庭金融资产状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num3_1">存款+投资理财</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num3_2">20万</b>
+      </p>
+      <p>
+        <a>家庭金融资产状况证明</a>
+        <span id="theer">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+        </span>
+      </p>
+    </div> -->
+    <!--患者保险状况-->
+    <!-- <div class="msg-one">
+      <h6>患者保险状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num4_1">养老保险</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num4_2">3万</b>
+      </p>
+      <p>
+        <a>患者保险状况证明</a>
+        <span id="for">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+        </span>
+      </p>
+    </div> -->
+    <!--患者低保状况-->
+    <!-- <div class="msg-one" style="margin-bottom: 1.1rem;">
+      <h6>患者低保状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num5_1">农村低保</b>
+      </p>
+      <p>
+        <a>患者低保状况证明</a>
+        <span id="five">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+          <img src="http://img5.imgtn.bdimg.com/it/u=3127389069,3418045518&fm=11&gp=0.jpg" alt="">
+        </span>
+      </p>
+    </div> -->
+    <div class="footer">
+      <button style="vertical-align: top;">重新编辑</button>
+    </div>
+    <div class="mask">
+      <img src="" alt="">
+    </div>
+  </div>
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/initiatorjs/jquery.min.js"></script>
+  <script src="https://imgs.bihubao.com/Public/js/nuoyanchou/ajaxFn/ajax-extend.js?v01"></script>
+  <script>
+    var str1 = ''
+    var str2 = ''
+    var str3 = ''
+    var str4 = ''
+    var str5 = ''
+    var flag1 = false
+    var flag2 = false
+    var flag3 = false
+    var flag4 = false
+    var prjId = 4799
+    var activeurl = "<%=config.serverpath%>"
+    sessionStorage.setItem('key_a', activeurl);
+    //截取地址栏
+    function UrlSearch() {
+      var name, value;
+      var str = location.href; //取得整个地址栏
+      var num = str.indexOf("?")
+      str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+
+      var arr = str.split("&"); //各个参数放到数组里
+      for (var i = 0; i < arr.length; i++) {
+        num = arr[i].indexOf("=");
+        if (num > 0) {
+          name = arr[i].substring(0, num);
+          value = arr[i].substr(num + 1);
+          this[name] = value;
+        }
+      }
+    }
+    var Request = new UrlSearch(); //实例化
+    if (Request.id) {
+      prjId = Request.id
+    } else {
+      prjId = 4799
+    }
+    console.log(prjId)
+    $.ajax({
+      url: activeurl + `/api/credit/list/${prjId}`,
+      type: 'get',
+      success: function (res) {
+        console.log(res)
+        if (res.length >= 5) {
+          $('.footer').hide()
+        }
+        $.each(res, function (a, b) {
+          //第一项操作
+          if (b.mainType == 1) {
+            var strText = ''
+            var strone = ''
+            console.log(b.amount)
+            if (b.amount == 0) {
+              strone = '无'
+            } else if (b.amount == 1) {
+              strone = '一套'
+            } else if (b.amount == 2) {
+              strone = '两套'
+            } else if (b.amount == 3) {
+              strone = '三套及以上'
+            }
+            if ( b.state) {
+              if (b.state == 0) {
+                strText = '未变卖'
+              } else {
+                strText = '变卖中'
+              }
+            } else {
+              strText='无'
+            }
+            str1 += b.serverids
+            var dom =
+              ` <div class="msg-one">
+      <h6>家庭房屋财产状况</h6>
+      <p>
+        <a>数量</a>
+        <b id="num1_1">${strone}</b>
+      </p>
+      <p>
+        <a>状态</a>
+        <b id="num1_2">${strText}</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num1_3">${b.cost}万</b>
+      </p>
+      <p id="pic1" style="display:none";>
+        <a>房屋资产证明</a>
+        <span id="one">
+        </span>
+      </p>
+    </div>`
+            $('.wrapper').append(dom)
+            if(!b.cost){
+              $('#num1_3').text('无')
+            }
+          } else if (b.mainType == 2) {
+            //第二项操作
+            var strText = ''
+            var strone = ''
+            console.log(b.amount)
+            if (b.amount == 0) {
+              strone = '无'
+            } else if (b.amount == 1) {
+              strone = '一辆'
+            } else if (b.amount == 2) {
+              strone = '两辆'
+            } else if (b.amount == 3) {
+              strone = '三辆及以上'
+            }
+            if (b.state) {
+              if (b.state == 0) {
+                strText = '未变卖'
+              } else {
+                strText = '变卖中'
+              }
+            } else {
+              strText='无'
+            }
+            var dom =
+              `<div class="msg-one">
+      <h6>家庭车辆财产状况</h6>
+      <p>
+        <a>数量</a>
+        <b id="num2_1">${strone}</b>
+      </p>
+      <p>
+        <a>状态</a>
+        <b id="num2_2">${strText}</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num2_3">${b.cost}</b>
+      </p>
+      <p id="pic2" style="display:none";>
+        <a>房屋资产证明</a>
+        <span id="two">
+        </span>
+      </p>
+    </div>`
+            $('.wrapper').append(dom)
+            if(!b.cost){
+              $('#num2_3').text('无')
+            }
+            str2 += b.serverids
+          } else if (b.mainType == 3) {
+            //第三项操作
+            var strText = ''
+            if (b.subType == 0) {
+              strText = '无'
+            } else if (b.subType == 1) {
+              strText = '存款'
+            } else if (b.subType == 2) {
+              strText = '存款+投资理财'
+            }
+            var dom =
+              `<div class="msg-one">
+      <h6>家庭金融资产状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num3_1">${strText}</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num3_2">${b.cost}</b>
+      </p>
+      <p id="pic3" style="display:none";>
+        <a>家庭金融资产状况证明</a>
+        <span id="theer">
+        </span>
+      </p>
+    </div>`
+            $('.wrapper').append(dom)
+            if(!b.cost){
+              $('#num3_2').text('无')
+            }
+            str3 += b.serverids
+          } else if (b.mainType == 4) {
+            //第四项操作
+            var strText = ''
+            if (b.subType == 0) {
+              strText = '无'
+            } else if (b.subType == 3) {
+              strText = '医保'
+            } else if (b.subType == 4) {
+              strText = '存款+投资理财'
+            } else if (b.subType == 5) {
+              strText = '医保'
+            }
+            var dom =
+              `<div class="msg-one">
+      <h6>患者保险状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num4_1">${strText}</b>
+      </p>
+      <p>
+        <a>价值</a>
+        <b id="num4_2">${b.cost}</b>
+      </p>
+      <p id="pic4" style="display:none";>
+        <a>患者保险状况证明</a>
+        <span id="for">
+        </span>
+      </p>
+    </div>`
+            $('.wrapper').append(dom)
+            if(!b.cost){
+              $('#num4_2').text('无')
+            }
+            str4 += b.serverids
+          } else if (b.mainType == 5) {
+            //第五项操作
+            var strText = ''
+            if (b.subType == 0) {
+              strText = '无'
+            } else if (b.subType == 6) {
+              strText = '农村低保'
+            } else if (b.subType == 7) {
+              strText = '农村五保'
+            } else if (b.subType == 8) {
+              strText = '政府医疗救助'
+            }
+            var dom =
+              `<div class="msg-one">
+      <h6>患者低保状况</h6>
+      <p>
+        <a>类型</a>
+        <b id="num5_1">${strText}</b>
+      </p>
+      <p id="pic5" style="display:none";>
+        <a>患者低保状况证明</a>
+        <span id="five">
+        </span>
+      </p>
+    </div>`
+            $('.wrapper').append(dom)
+            str5 += b.serverids
+          }
+        })
+        //图片展示操作
+        if (str1) {
+          $('#pic1').show()
+          var result = str1.split(",");
+          $.each(result, function (a, b) {
+            console.log(b, '第一项的图片路径')
+            var pic_box = '<img id="img" class="showimg" src="' +
+              activeurl + '/common/img/' + b + '" />'
+            $('#one').append(pic_box)
+          })
+        }
+        if (str2) {
+          $('#pic2').show()
+          var result = str2.split(",");
+          $.each(result, function (a, b) {
+            console.log(b, '第二项的图片路径')
+            var pic_box = '<img id="img" class="showimg" src="' +
+              activeurl + '/common/img/' + b + '" />'
+            $('#two').append(pic_box)
+          })
+        }
+        if (str3) {
+          $('#pic3').show()
+          var result = str3.split(",");
+          $.each(result, function (a, b) {
+            console.log(b, '第三项的图片路径')
+            var pic_box = '<img id="img" class="showimg" src="' +
+              activeurl + '/common/img/' + b + '" />'
+            $('#theer').append(pic_box)
+          })
+        }
+        if (str4) {
+          $('#pic4').show()
+          var result = str4.split(",");
+          $.each(result, function (a, b) {
+            console.log(b, '第四项的图片路径')
+            var pic_box = '<img id="img" class="showimg" src="' +
+              activeurl + '/common/img/' + b + '" />'
+            $('#for').append(pic_box)
+          })
+        }
+        if (str5) {
+          $('#pic5').show()
+          var result = str5.split(",");
+          $.each(result, function (a, b) {
+            console.log(b, '第五项的图片路径')
+            var pic_box = '<img id="img" class="showimg" src="' +
+              activeurl + '/common/img/' + b + '" />'
+            $('#five').append(pic_box)
+          })
+        }
+        $('.wrapper .msg-one:last').css({
+          'margin-bottom': 1.1 + 'rem'
+        })
+        //图片预览
+        setTimeout(function () {
+          var numCont = []
+          $.each($('#one .showimg'), function (item, index) {
+            numCont.push(index)
+            $(index).on('click', function () {
+              var imgUrl = $(this).attr('src')
+              console.log(imgUrl)
+              $('.mask').show()
+              $('.mask img').attr('src', imgUrl)
+            })
+          })
+          $.each($('#two .showimg'), function (item, index) {
+            numCont.push(index)
+            $(index).on('click', function () {
+              var imgUrl = $(this).attr('src')
+              console.log(imgUrl)
+              $('.mask').show()
+              $('.mask img').attr('src', imgUrl)
+            })
+          })
+          $.each($('#theer .showimg'), function (item, index) {
+            numCont.push(index)
+            $(index).on('click', function () {
+              var imgUrl = $(this).attr('src')
+              console.log(imgUrl)
+              $('.mask').show()
+              $('.mask img').attr('src', imgUrl)
+            })
+          })
+          $.each($('#for .showimg'), function (item, index) {
+            numCont.push(index)
+            $(index).on('click', function () {
+              var imgUrl = $(this).attr('src')
+              console.log(imgUrl)
+              $('.mask').show()
+              $('.mask img').attr('src', imgUrl)
+            })
+          })
+          $.each($('#five .showimg'), function (item, index) {
+            numCont.push(index)
+            $(index).on('click', function () {
+              var imgUrl = $(this).attr('src')
+              console.log(imgUrl)
+              $('.mask').show()
+              $('.mask img').attr('src', imgUrl)
+            })
+          })
+        }, 1000)
+      }
+    })
+    $('.footer').on('click', function () {
+      window.location.href = `${activeurl}/htmls/buchongzengxin/index?id=${prjId}`
+    })
+    $('.mask').on('click', function () {
+      $('.mask').hide()
+    })
+  </script>
+
+</body>
+
+</html>

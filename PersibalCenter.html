@@ -1,0 +1,2810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <title>个人中心</title>
+  <script src="https://www.bihubao.com/Public/js/nuoyanchou/initiatorjs/jquery.min.js"></script>
+  <link rel="stylesheet" href="  https://www.bihubao.com/Public/js/NewUser/swiper.min.css?1.0">
+  <script src="  https://www.bihubao.com/Public/js/NewUser/swiper.js?1.0"></script>
+  <script type="text/javascript" src="https://www.bihubao.com/Public/js/jquery182.min.js"></script>
+  <script type="text/javascript" src="https://www.bihubao.com/Public/js/wx_info/wx_info_help.js?v=40"></script>
+  <script>
+    getLocalWXInfo('openid');
+    if (!getCookie('openid') && wx_return_code) {
+      wx_return_code = null;
+      getLocalWXInfo('openid');
+    }
+  </script>
+  <link rel="stylesheet" href="https://www.bihubao.com/Public/css/NewUser/reset.css?v0.1">
+  <link rel="stylesheet" type="text/css" media="all"
+    href="https://www.bihubao.com/Public/css/NewUser/PersibalCenter/persibalcenter.css?v.15">
+  <link rel="stylesheet" href="https://www.bihubao.com/Public/css/nuoyanchou/add-css/newFinal.css?v0.1">
+  <link rel="stylesheet" href="https://www.bihubao.com/Public/css/nuoyanchou/add-css/activeModel.css">
+  <script type="text/javascript" src="https://www.bihubao.com/Public/js/page_st.js"></script>
+</head>
+<style>
+  /* .swiper-slide {
+    height: .68rem;
+  } */
+  .swiper-slide img {
+    height: 100%;
+    position: relative;
+  }
+
+  .swiper-slide span {
+    width: 100%;
+    font-size: .24rem;
+    position: absolute;
+    font-family: 'PingFangSC-Regular,PingFang SC';
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    bottom: 5%;
+    left: 0;
+    text-align: center;
+  }
+
+  .finalPage {
+    width: 5.39rem !important;
+    height: 4.01rem !important;
+  }
+
+  #oneinfroNormal {
+    position: absolute;
+    left: 20%;
+  }
+
+  .header>img {
+    border-radius: 50%;
+  }
+
+  .banner {
+    position: relative;
+  }
+
+  .indexSwiper .swiper-pagination {
+    top: 63%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+  }
+
+  .indexSwiper .swiper-pagination-bullet {
+    width: .2rem;
+    height: .2rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: #68666F;
+    opacity: .3;
+    margin-left: .2rem;
+  }
+
+  .indexSwiper .swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+  }
+
+  .wrapper .banner-list ul #weishimin h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .36rem;
+    color: #ffffff;
+    height: 1.135rem;
+    margin: 0;
+  }
+
+  .wrapper .banner-list ul #mstj h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .36rem;
+    color: #ffffff;
+    height: 1.7rem;
+    margin-top: .2rem;
+    line-height: .5rem;
+  }
+
+  .wrapper .banner-list ul #weijiaru h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .3rem;
+    color: #ffffff;
+    height: 1.7rem;
+    margin-top: .2rem;
+    line-height: .5rem;
+  }
+
+  /* 我的朋友 */
+  .wrapper .banner-list2 ol #familyweishimin h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .36rem;
+    color: #ffffff;
+    height: 1.135rem;
+    margin: 0;
+  }
+
+  .wrapper .banner-list2 ol #familymstj p:last-child() {
+    padding: .04rem .48rem;
+  }
+
+  .wrapper .banner-list2 ol #familyweijiaru h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .36rem;
+    color: #ffffff;
+    height: 1.7rem;
+    margin-top: .2rem;
+    line-height: .5rem;
+  }
+
+  .loading {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    /* display: none; */
+  }
+
+  .loading img {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-top: 3.6rem;
+  }
+
+  .finalWrap {
+    display: none;
+  }
+
+  .wrapper .add {
+    height: 2rem;
+  }
+
+  .wrapper .banner-list {
+    margin: .38rem 0 0 0;
+  }
+
+  .banner-list ul {
+    overflow-x: scroll;
+  }
+
+  .banner-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wrapper .banner-list ul #weishimin h6 {
+    font-size: .3rem;
+  }
+
+  #addFamily {
+    width: 2.9rem;
+    height: auto;
+    margin-top: .5rem;
+  }
+
+  .wrapper .add .addbox {
+    height: 1.9rem;
+    top: 0;
+  }
+
+  .wrapper .add .addbox button {
+    margin-bottom: 0;
+    margin-top: .12rem;
+  }
+
+  .wrapper h6 a {
+    font-family: "PingFangSC-Regular";
+    font-size: .28rem;
+    color: #ffba51;
+    margin-left: 16%;
+  }
+
+  .wrapper h6 a img {
+    width: .2rem;
+    height: .2rem;
+    margin-top: -.07rem;
+  }
+
+  .wrapper h6 b {
+    color: #000;
+    font-weight: normal;
+  }
+
+  .wrapper h6 b:nth-child(2) {
+    margin-left: .5rem;
+  }
+
+  .wrapper h6 .addcolor {
+    color: #ffba51;
+  }
+
+  .shareMask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 999;
+    display: none;
+  }
+
+  .shareMask .shareBox {
+    width: 100%;
+    height: 4rem;
+    background: #fff;
+    margin-top: 161%;
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+  }
+
+  .shareBox p {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    border-bottom: .01rem #ccc solid;
+    -webkit-justify-content: space-between;
+    padding: .4rem .3rem;
+    font-size: .3rem;
+  }
+
+  .shareBox p img {
+    width: .3rem;
+    height: .3rem;
+  }
+
+  .shareBox h6 {
+    width: 100%;
+    text-align: center;
+    font-size: .4rem;
+    font-weight: normal;
+    margin-top: .3rem;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .shareBox h5 {
+    width: 100%;
+    text-align: center;
+    font-size: .3rem;
+    font-weight: normal;
+    color: #ffba51;
+    margin-top: .3rem;
+  }
+
+  .wrapper>h6 {
+    position: relative;
+  }
+
+  .wrapper>h6 c {
+    width: 12%;
+    height: .04rem;
+    position: absolute;
+    background: #ffba51;
+    left: 4%;
+    top: 112%;
+  }
+
+  .wrapper #weishiminFriend {
+    background: url(https://www.bihubao.com/Public/images/NewUser/imgs/me_image_yellow@2x.png) no-repeat;
+    background-size: 100% 100%;
+    -webkit-flex-shrink: 0;
+  }
+
+  .wrapper #weishiminFriend h6 {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    font-family: "PingFangSC-Medium";
+    font-size: .3rem;
+    color: #ffffff;
+    height: 1.135rem;
+    margin: 0;
+  }
+
+  .tips_top {
+    width: 100%;
+    height: 40px;
+    background: #f5f5f9;
+    overflow: hidden;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+  }
+
+  .tips_top img {
+    width: .28rem;
+    height: .28rem;
+    margin-left: .1rem;
+    position: absolute;
+    top: .23rem;
+    left: .4rem;
+  }
+
+  .task-slid {
+    display: flex;
+    display: -webkit-flex;
+    height: 68px;
+    -webkit-align-items: center;
+    margin-left: .2rem;
+  }
+
+  #task_sons {
+    display: none;
+  }
+
+  #task_sons a {
+    width: 100%;
+    display: inline-block;
+    text-indent: .2rem;
+    font-size: .23rem;
+    color: #1b1b1b;
+    font-family: 'pingFangSc-Medium';
+  }
+
+  #Thaw_sons a {
+    width: 100%;
+    display: inline-block;
+    text-indent: .2rem;
+    font-size: .23rem;
+    color: #1b1b1b;
+    font-family: 'pingFangSc-Medium';
+  }
+
+  .wrapper .nav2 span {
+    position: relative;
+  }
+
+  .wrapper .nav2 span c {
+    position: absolute;
+    width: .16rem;
+    height: .16rem;
+    background: red;
+    border-radius: 50%;
+    left: 35%;
+    top: 0;
+  }
+
+  .wrapper h6 a {
+    margin-left: 12%;
+  }
+
+  .banner-list ol {
+    overflow-x: scroll;
+  }
+
+  .banner-list2 ol {
+    overflow-x: scroll;
+  }
+
+  .wrapper .banner-list2 ol li p a {
+    width: 30%;
+  }
+
+  .wrapper .banner-list2 ol li p:nth-child(1) span {
+    width: 55%;
+  }
+
+  .wrapper .banner-list2 ol li p a {
+    width: 40%;
+  }
+
+  .sinaToast {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+  }
+
+  .sinaToast .sinaBox {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    margin-top: 20%;
+    border-radius: .2rem;
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .sinaBox .sinaFootBtn {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    position: fixed;
+    z-index: 88;
+    border-top: solid .012rem #e6e6e6;
+  }
+
+  .sinaFootBtn button {
+    width: 80%;
+    background: linear-gradient(90deg, rgba(255, 191, 69, 1) 0%, rgba(253, 156, 18, 1) 100%);
+    border-radius: .5rem;
+    font-family: 'PingFangSC-Regular,PingFang SC';
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    font-size: .36rem;
+    padding: .2rem 0;
+    margin: 0 10%;
+  }
+
+  .sinaFootBtn p {
+    width: 100%;
+    display: block;
+    height: 1.04rem;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: space-between;
+    -webkit-align-items: center;
+    margin-bottom: .3rem;
+  }
+
+  .sinaFootBtn p span {
+    width: 33.3%;
+    height: .4rem;
+    line-height: .4rem;
+    display: inline-block;
+    text-align: center;
+    color: #00A0E9;
+    font-size: .24rem;
+    font-family: 'PingFangSC-Regular,PingFang SC';
+    text-decoration: underline;
+  }
+
+  .titleSina {
+    padding: .14rem 0 .4rem 0;
+    width: 100%;
+    text-align: center;
+    font-size: .3rem;
+    font-family: 'PingFangSC-Regular,PingFang SC';
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+  }
+
+  .titleSina img {
+    width: .2rem;
+    width: .16rem;
+    margin-left: .16rem;
+    transform: rotate(0deg);
+  }
+
+  .step_teach {
+    width: 100%;
+    position: relative;
+    padding-bottom: 5rem;
+  }
+
+  .btn_swiper {
+    top: 42%;
+    left: 0;
+    position: absolute;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .btn_swiper .swiper-pagination {
+    top: 90%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+  }
+
+  .btn_swiper .swiper-pagination-bullet {
+    background: #FFE1B7;
+    opacity: 1;
+    width: .12rem;
+    height: .1rem;
+    border-radius: 0%;
+    margin-left: .2rem;
+  }
+
+  .btn_swiper .swiper-pagination-bullet-active {
+    background: #FE7F38;
+    opacity: 1;
+    width: .24rem;
+    height: .10rem;
+    border-radius: 0%;
+  }
+
+  #slide_last {
+    margin-right: .4rem !important;
+  }
+</style>
+
+<body>
+  <script src="https://www.bihubao.com/Public/js/nuoyanchou/add-js/reset.js "></script>
+  <div class="wrapper" style="height:none;">
+    <div class="tips_top">
+      <img src="https://www.bihubao.com/Public/images/NewUser/imgs/xlb.png" alt="">
+      <!-- 轮播优惠券 -->
+      <div class="tops_list swiper-container">
+        <div class="tops_list_son swiper-wrapper">
+          <div class="task-slid swiper-slide" id="Thaw_sons" style="display:none;">
+            <a href="https://www.bihubao.com/Weixin/Newuser/ThawIndex.html">您获得一张账户解冻权益卡!速去查看 >></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header">
+      <img src="https://www.bihubao.com/Public/images/NewUser/imgs/logome.png" alt=""
+        onclick="window.location.href='https://www.bihubao.com/Weixin/Newuser/Personal.html'">
+      <p id="oneinfro">
+        <b></b>
+        <span></span>
+      </p>
+      <p style="display: none;" id="oneinfroNormal">
+        <b style="font-size:.3rem;">您还未加入壁虎互助</b>
+      </p>
+      <span id="inforlv"
+        onclick="window.location.href='https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/my_lvl_page.html'">
+        <a></a>
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/me_icon_huangjin@2x.png" alt="">
+      </span>
+    </div>
+    <div class="nav">
+      <span onclick="gotoRecharge()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_1@2x.png" alt="">
+        <a>续费充值</a>
+      </span>
+      <!-- <span onclick="gototask_center()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_2@2x.png" alt="">
+        <a>任务中心</a>
+      </span> -->
+      <span onclick="gotoSina()">
+        <img src="https://www.bihubao.com/Public/images/sina/fy_icon.png" alt="">
+        <a>肺炎互助</a>
+      </span>
+      <span onclick="gotozijinmingxi()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_6@2x.png" alt="">
+        <a>资金明细</a>
+      </span>
+      <span onclick="gotoapplyhelp()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_4@2x.png" alt="">
+        <a>申请互助</a>
+      </span>
+    </div>
+    <h6><b class="addcolor">我的家庭</b><b>亲朋好友</b><a onclick="gotodragonboat()">邀亲朋好友&nbsp;<img
+          src="https://www.bihubao.com/Public/images/NewUser/imgs/rights.png" alt=""></a>
+      <c></c>
+    </h6>
+    <!--我的家庭-->
+    <div class="banner-list">
+      <!--已加入状态-->
+      <ul id="scroll-family"></ul>
+      <!--未加入状态-->
+      <div class="list-normal">
+        <ol>
+          <li id="buzhu" onclick="location.href='https://www.bihubao.com/index.php/Weixin/Ensure/peoplehelp_new.html'">
+            <h6>您还未加入全民互助计划</h6>
+            <p>
+              <text>重疾互助金上限40万元 </text>
+            </p>
+            <p>
+              <text>意外互助金上限20万元</text>
+            </p>
+            <p><span><b>10元加入</b>&nbsp;零钱续费</span>
+              <button>了解详情</button>
+            </p>
+          </li>
+          <li id="chongzu"
+            onclick="location.href='https://www.bihubao.com/index.php/Weixin/Propertyhelp/househelp.html'">
+            <h6>您还未加入家财互助计划</h6>
+            <p>
+              <text>房产及附属设备等</text>
+            </p>
+            <p>
+              <text>互助金上限35万</text>
+            </p>
+            <p><span><b>10元加入</b>&nbsp;零钱续费</span>
+              <button>了解详情</button>
+            </p>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <!--我的好友-->
+    <div class="banner-list2">
+      <ol style="display: none;" id="scroll-goodfriend">
+      </ol>
+    </div>
+    <div class="add">
+      <img src="https://www.bihubao.com/Public/images/NewUser/imgs/wjrjr.png" alt="" id="addFamily">
+      <div class="addbox">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/close.gif" alt="" id="close">
+        <p>您的家人余额不足，互助权益即将失效，请立即充值！</p>
+        <button onclick="gotoRecharge()">立即充值</button>
+      </div>
+    </div>
+    <!-- 轮播banner -->
+    <div class="banner swiper-container">
+      <div class="swiper-wrapper">
+        <!-- 只有一条时，设置循环轮播为false，其他设置为true -->
+        <!-- <div class="swiper-slide" onclick="Medicalcare();" href="javascript:void(0);"><img
+            src="https://www.bihubao.com/Public/images/NewUser/imgs/Newbanner0.png" alt=""></div>
+        <div class="swiper-slide" onclick="weiyi();" href="javascript:void(0);"><img
+                src="https://www.bihubao.com/Public/images/banner/weiyi_0729.png" alt=""></div> -->
+        <!-- <div class="swiper-slide" onclick="mall1111();" href="javascript:void(0);"><img
+            src="__PUBLIC__/images/banner/mall_1112.png" alt=""></div> -->
+        <!-- <div class="swiper-slide" onclick="jd();"><img style="height: 110%;"
+            src="__PUBLIC__/images/banner/yatai.png?ver=1" alt=""></div> -->
+        <!-- 2020-01-01 to 2020-02-01 新年甄品商场活动 -->
+        <!-- <div class="swiper-slide" onclick="active2020();" href="javascript:void(0);"><img
+              src="https://www.bihubao.com/Public/images/NewUser/imgs/2020active.jpg" alt=""></div> -->
+        <!-- 2020-01-01 to 2020-02-01 新年红包活动 -->
+        <!-- <div class="swiper-slide" onclick="newyear2020();" href="javascript:void(0);"><img
+            src="https://www.bihubao.com/Public/images/banner/newyear2020.png" alt=""></div> -->
+        <!-- 2019-11-12 壁虎商城互助金返现活动 -->
+        <!-- <div class="swiper-slide" onclick="shopActivity();" href="javascript:void(0);"><img
+            src="https://www.bihubao.com/Public/images/NewUser/imgs/shopActivity.png" alt=""></div> -->
+        <!-- 2019-11-06 11:00 改为众惠三高产品 -->
+        <!-- <div class="swiper-slide" onclick="Sina_fy();" href="javascript:void(0);"><img
+            src="https://www.bihubao.com/Public/images/sina/sina_fy.jpg" alt=""></div>
+      </div> -->
+        <!-- 直播活动带货 -->
+        <!-- <div class="swiper-slide" onclick="huzhuLive();" href="javascript:void(0);"><img
+        src="http://youbeibx-projects.oss-cn-beijing.aliyuncs.com/imgs/bihuShopL.png" alt=""></div> -->
+        <div class="swiper-slide" onclick="Medicalcare();" href="javascript:void(0);"><img
+            src="http://youbeibx-projects.oss-cn-beijing.aliyuncs.com/imgs/bannerLogo.png" alt=""></div>
+      </div>
+      <!-- 如果需要分页器 swiper-pagination-bullet-active -->
+      <div class="indexSwiper swiper-pagination">
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+      </div>
+    </div>
+    <h6>更多服务</h6>
+    <div class="nav2">
+      <span onclick="gotomy()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_5@2x.png" alt="">
+        <a>我的琥珀</a>
+      </span>
+      <span onclick="gotodragonboat2()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_3@2x.png" alt="">
+        <a>邀请好友</a>
+      </span>
+      <span onclick="gotojiacaihuzhu()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_7@2x.png" alt="">
+        <a>家财互助</a>
+      </span>
+      <span id="dashi" onclick="gotodashi()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_8@2x.png" alt="">
+        <a>壁虎大使</a>
+      </span>
+      <span id="tongzhou" style="display:none;"
+        onclick="location.href='https://www.bihubao.com/index.php/Weixin/Ensure/dragonboat.html?channel=19901'">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_8_2@2x.png" alt="">
+        <a>同舟互助</a>
+      </span>
+      <span onclick="gotogongshi()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_9@2x.png" alt="">
+        <a>公示与扣款</a>
+      </span>
+      <span onclick="location.href='https://www.bihubao.com/index.php/Weixin/Plan/convention'">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_10@2x.png" alt="">
+        <a>公约章程</a>
+      </span>
+      <span onclick="location.href='https://www.bihubao.com/index.php/Home/Index/report_2019.html'">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_11@2x.png" alt="">
+        <a>年报公示</a>
+      </span>
+      <span onclick="location.href='https://www.bihubao.com/Weixin/Newuser/Bihu_frimay'">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_12@2x.png" alt="">
+        <a>壁虎家园</a>
+      </span>
+
+    </div>
+    <div class="line">
+    </div>
+    <h6>更多福利</h6>
+    <div class="nav2">
+      <span onclick="youhuiquan()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_13@2x.png" alt="">
+        <a>优惠券</a>
+        <c></c>
+      </span>
+      <span onclick="jd_icon()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_14@2x.png" alt="">
+        <a>在线金库</a>
+      </span>
+      <span onclick="doctoronline()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_15@2x.png" alt="">
+        <a>在线问诊</a>
+      </span>
+      <span onclick="daka()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/daka.png" alt="">
+        <a>早起打卡</a>
+      </span>
+      <span onclick="gotoTest()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/iconlast.png?v-1" alt="">
+        <a>产品测试</a>
+      </span>
+      <span onclick="gotoSina()">
+        <img src="https://www.bihubao.com/Public/images/sina/fy_icon.png" alt="">
+        <a>肺炎互助</a>
+      </span>
+      <span onclick="gototask_center()">
+        <img src="https://www.bihubao.com/Public/images/NewUser/imgs/功能icon/me_icon_2@2x.png" alt="">
+        <a>任务中心</a>
+      </span>
+    </div>
+    <div class="foot" onclick="location.href='https://www.bihubao.com/Weixin/Newuser/kefu'">
+      <button style="width:70.25*2px;border:solid .01rem #f8b551;transform: rotateZ(360deg);">联系客服</button>
+      <img src="https://www.bihubao.com/Public/images/NewUser/imgs/互助者无需天助@2x.png" alt="">
+    </div>
+    <div class="loading">
+      <img src="https://www.bihubao.com/Public/images/NewUser/imgs/2112321.gif" alt="">
+    </div>
+    <div class="finalWrap" style="z-index:999;">
+      <div class="finalPage">
+        <img src="https://www.bihubao.com/Public/images/nuoyanchou/add-images/activeModal.png">
+        <section class="activeSection">
+          <span class="closeBtn">×</span>
+          <h2>恭喜！获得大病互助权益</h2>
+          <h3>30<i>万</i></h3>
+          <p class="activeDes"></p>
+          <h4 class="showInfo"></h4>
+          <button class="activeButton"></button>
+        </section>
+      </div>
+    </div>
+    <div class="shareMask">
+      <div class="shareBox">
+        <p><a>提示</a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/close.png" sid="closeShare" /></p>
+        <h6></h6>
+        <h5>提醒该好友及时充值，避免权益失效</h5>
+      </div>
+    </div>
+    <!-- 壁虎&新浪合并公告 -->
+    <div class="sinaToast">
+      <div class="sinaBox">
+        <div class="sinaLogo">
+          <img src="http://bihu-sina-project.oss-cn-beijing.aliyuncs.com/imgs/logosina1.png" alt="">
+        </div>
+        <div class="titleSina">
+          调整教程<img src="http://bihu-sina-project.oss-cn-beijing.aliyuncs.com/imgs/down%402x.png" alt="">
+        </div>
+        <div class="step_nbsp" style="height: 4.5rem;display: none;"></div>
+        <div class="step_teach">
+          <div class="bannersina swiper-container">
+            <div class="swiper-wrapper">
+              <!-- style="width: 4.92rem!important;height: 3.68rem!important; -->
+              <div class="swiper-slide" style="margin-left: .4rem;height: 4.5rem;">
+                <img style="width: 4.92rem;height: 3.68rem;"
+                  src="http://bihu-sina-project.oss-cn-beijing.aliyuncs.com/imgs/1%403x.png" alt="">
+                <span>个人中心点击卡片</span>
+              </div>
+              <div class="swiper-slide" style="height: 4.5rem;">
+                <img style="width: 4.92rem;height: 3.68rem;"
+                  src="http://bihu-sina-project.oss-cn-beijing.aliyuncs.com/imgs/2%403x.png" alt="">
+                <span>点击调整计划</span>
+              </div>
+              <div class="swiper-slide" style="height: 4.5rem;">
+                <img style="width: 4.92rem;height: 3.68rem;margin-right: .4rem;"
+                  src="http://bihu-sina-project.oss-cn-beijing.aliyuncs.com/imgs/newpage3.png" alt="">
+                <span>修改受助类型</span>
+              </div>
+            </div>
+          </div>
+          <!-- 如果需要分页器 swiper-pagination-bullet-active -->
+          <div class="btn_swiper swiper-pagination">
+          </div>
+        </div>
+        <div class="sinaFootBtn">
+          <button id="mykown">我已知晓</button>
+          <p>
+            <span
+              onclick="location.href='https://www.bihubao.com/index.php/Weixin/Plan/convention_illness.html'">新版大病互助计划</span>
+            <span onclick="location.href='https://www.bihubao.com/index.php/Weixin/Plan/convention'">更多章程</span>
+            <span onclick="location.href='https://www.bihubao.com/Weixin/Newuser/kefu'">联系客服</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.bihubao.com/Public/js/NewUser/iscroll-probe.js"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+  <script>
+    var newInfinish = false
+    var openid2 = getCookie('openid')
+    var channel = 100;
+    var houseNum = 0
+    var FriendFlag = true
+    var shareflag = false
+    var Fname = ''
+    var IsThaw = false
+    var unionid = ''
+    var openidIsshow = false
+    var rotate = true
+    var ip = returnCitySN["cip"]
+    //弹框按照顺序展示
+    var isToast = false
+    $(function () {
+      var parameter = {};
+      var famid = ''
+      var flagid = false
+      var myname = []
+      var guanxi = []
+      var isBenren = ''
+      var flag = ''
+      var a = true
+      var newDate = ''
+      var guanxiconts = 0
+      var names = ''
+      var Fmily_Ids = []
+      var lens = 1
+      var Mycarid = ''
+      var openids = ''
+      var newFlag = false
+      var newBtnFlag = 0
+      var newzflah = true
+      var new_falses = false
+      //进入页面统计uv
+      update_page_st(openid2, 0, "Newuser_index", 'pv', 0, "");
+      openid = getCookie('openid');
+      var selfWrite = ''
+      //示例
+      function demo() {
+        openid = getCookie('openid')
+        openid2 = getCookie('openid')
+        parameter['openid'] = openid;
+        parameter = JSON.stringify(parameter)
+        //请求个人信息数据
+        $.ajax({
+          url: 'https://www.bihubao.com/index.php/Api/User/getUserInfo',
+          type: 'get',
+          async: false,
+          data: {
+            'parameter': parameter
+          },
+          success: function (res) {
+            var resD = JSON.parse(res);
+            maidian("pv", resD.msg.uid, channel);
+            if (resD.msg.name == '' || resD.msg.name == null) {
+              names = resD.msg.nickname
+              window.sessionStorage.setItem('F_name', names)
+            } else {
+              names = resD.msg.name
+              window.sessionStorage.setItem('F_name', names)
+            }
+            flag = resD.msg.dashi
+            //判断显示 大使 还是同舟互助
+            if (flag == 0) {
+              $('#tongzhou').show()
+              $('#dashi').hide()
+            } else {
+              $('#dashi').show()
+              $('#tongzhou').hide()
+            }
+            window.sessionStorage.setItem('phone', resD.msg.mobile)
+            window.setCookie('phone', resD.msg.mobile)
+            //获取个人信息
+            getuserinfor(res)
+            if (resD.msg.isfinish == 0) {
+              openidIsshow = false
+            } else if (resD.msg.isfinish > 0) {
+              //获取本人列表信息
+              getUserinforList(res)
+              openidIsshow = true
+            }
+            //获取朋友列表
+            getFriendsList()
+            //获取家人列表
+            setTimeout(function () {
+              getfam()
+            }, 200)
+          },
+          error: function (rej) {
+            // alert(rej)
+            alert('getUserInfo接口失败')
+          }
+        })
+        //获取互助我已知晓
+        $.ajax({
+          url: 'https://www.bihubao.com/index.php/Api/Ensure/combine_obtain',
+          type: 'get',
+          async: false,
+          dataType: 'json',
+          data: {
+            'parameter': parameter
+          },
+          success: function (res) {
+            if (res.msg.know == 1) {
+              $('.sinaToast').hide()
+              isToast = true
+            } else {
+              update_page_st(openid, 0, "VipCenterMyKown", 'submit_mykown', 0, "");
+              $('.sinaToast').show()
+              //轮播图初始化
+              var mySwiper = new Swiper('.bannersina', {
+                slidesPerView: 1.35,
+                spaceBetween: 0,
+                paginationClickable: true,
+                pagination: '.btn_swiper',
+              })
+            }
+            console.log(res, '.......获取互助我已知晓')
+          }
+        })
+        //获取家人列表
+        function getfam() {
+          $.ajax({
+            url: 'https://www.bihubao.com/index.php/Api/User/getUserFamilyCount',
+            type: 'get',
+            dataType: 'json',
+            data: {
+              'parameter': parameter
+            },
+            success: function (res) {
+              console.log(res, '获取家人列表')
+              if (res.msg.length == 0) {
+                $('.wrapper .add .addbox').hide()
+              }
+              $.each(res.msg, function (a, b) {
+                famid = b.family_id
+                Fmily_Ids.push(b.family_id)
+                myname.push(b.name)
+                guanxi.push(b.relation)
+                var parameter = {}
+                //parameter = JSON.parse(parameter)
+                parameter['family_id'] = b.family_id
+                parameter['openid'] = getCookie('openid')
+                parameter = JSON.stringify(parameter)
+                console.log(parameter, '................................打印')
+                //获取用户或家人互助计划简要信息
+                $.ajax({
+                  url: 'https://www.bihubao.com/index.php/Api/User/getUserEnsureInfo',
+                  type: 'get',
+                  async: false,
+                  data: {
+                    'parameter': parameter
+                  },
+                  success: function (res) {
+                    var CZtext = []
+                    var balance = 0
+                    res = JSON.parse(res)
+                    houseNum = res.msg.house
+                    window.sessionStorage.setItem('house_balance', res.msg.house_balance)
+                    window.sessionStorage.setItem('house_nums', res.msg.house_nums)
+                    balance = res.msg.balance
+                    // parameter = JSON.parse(parameter)
+                    console.log(res, '家人互助计划简要信息')
+                    //判断保险类型
+                    if (res.msg.illness == '1') {
+                      CZtext.push('重疾互助计划')
+                    } else if (res.msg.older == '1') {
+                      CZtext.push('老年防癌互助计划')
+                    } else {
+                      CZtext.push('重疾互助计划（未加入）')
+                    }
+                    if (res.msg.accident == '1') {
+                      CZtext.push('意外医疗互助计划')
+                    } else if (res.msg.accident == '2') {
+                      CZtext.push('意外医疗互助计划（超龄退出）')
+                    } else {
+                      CZtext.push('意外医疗互助计划（未加入）')
+                    }
+                    if (res.msg.dead == '1') {
+                      CZtext.push('意外身故互助计划')
+                    } else if (res.msg.dead == '2') {
+                      CZtext.push('意外身故互助计划（超龄退出）')
+                    } else {
+                      CZtext.push('意外身故互助计划（未加入）')
+                    }
+                    // if (res.msg.older == '1') {
+                    //   CZtext.push('老年防癌互助计划')
+                    // } else {
+                    //   CZtext.push('老年防癌互助计划（未加入）')
+                    // }
+                    if (res.msg.house == '1') {
+                      CZtext.push('家财意外互助计划')
+                    } else {
+                      CZtext.push('家财意外互助计划（未加入）')
+                    }
+                    if (res.msg.balance >= 6 && res.msg.freeze == 0) {
+                      //余额充足
+                      var ins = Fmily_Ids[a]
+                      console.log(b)
+                      var benrendom = ''
+                      benrendom += '<li id="chongzu" class="' + ins + '"><p id="space-between">'
+                      benrendom += '<span><b style="max-width: 2rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-weight: normal;color: #fff;font-size: .32rem;">' + myname[a] + '</b>（' + guanxi[a] + '）</span> <a>余额充足</a></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[0] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[1] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[2] + '</text></p>'
+                      benrendom += '<p><span><b>' + balance + '</b>&nbsp;余额（元）</span>'
+                      benrendom += '<button class="CZRecharges">立即充值</button></p>'
+                      benrendom += '</li>'
+                      //   var benrendom =
+                      //     `<li id="chongzu" class="${ins}">
+                      //       <p id="space-between">
+                      //       <span><b>${myname[a]}</b>（${guanxi[a]}）</span>
+                      //       <a>余额充足</a>
+                      //     </p>
+                      //     <p id="${a}">
+                      //       <em></em>
+                      //       <text>${CZtext[0]}</text>
+                      //     </p>
+                      //     <p id="${a}">
+                      //       <em></em>
+                      //       <text>${CZtext[1]}</text>
+                      //     </p>
+                      //     <p id="${a}">
+                      //       <em></em>
+                      //       <text>${CZtext[2]}</text>
+                      //     </p>
+                      //     <p>
+                      //       <span><b>${balance}</b>&nbsp;余额（元）</span>
+                      //       <button class='CZRecharges'>立即充值</button>
+                      //      </p>
+                      // </li>`
+                      $('.banner-list ul').append(benrendom)
+                      //判断长度是否大于12
+                      console.log($('ul li').length)
+                      if ($('ul li').length >= 14) {
+                        $('.add').hide()
+                      } else {
+                        $('.add').show()
+                      }
+                    } else if (res.msg.balance < 6 && res.msg.freeze ==
+                      0) {
+                      //余额不足
+                      var ins = Fmily_Ids[a]
+                      var benrendom = ''
+                      benrendom += '<li id="buzhu" class="' + ins + '"><p id="space-between">'
+                      benrendom += '<span><b>' + myname[a] + '</b>（' + guanxi[a] + '）</span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />余额不足</a></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[0] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[1] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[2] + '</text></p>'
+                      benrendom += '<p><span><b>' + balance + '</b>&nbsp;余额（元）</span>'
+                      benrendom += '<button class="BZRecharges">立即充值</button></p>'
+                      benrendom += '</li>'
+                      $('.banner-list ul').append(benrendom)
+                      //判断长度是否大于12
+                      if ($('ul li').length >= 14) {
+                        $('.add').hide()
+                      } else {
+                        $('.add').show()
+                      }
+                    } else if (res.msg.freeze == 1) {
+                      //账户冻结
+                      IsThaw = true
+                      var ins = Fmily_Ids[a]
+                      var benrendom = ''
+                      benrendom += '<li id="dongjie" class="' + ins + '"><p id="space-between">'
+                      benrendom += '<span><b>' + myname[a] + '</b>（' + guanxi[a] + '）</span><a class="wraning" style="color:#e60012;">账户冻结</a>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[0] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[1] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[2] + '</text></p>'
+                      benrendom += '<p><span><b>' + balance + '</b>&nbsp;余额（元）</span>'
+                      benrendom += '<button class="DJRecharges">立即充值</button></p>'
+                      benrendom += '</li>'
+                      $('.banner-list ul').append(benrendom)
+                      //判断长度是否大于12
+                      if ($('ul li').length >= 14) {
+                        $('.add').hide()
+                      } else {
+                        $('.add').show()
+                      }
+                    } else if (res.msg.freeze == 2) {
+                      //账户失效
+                      console.log('family_id', Fmily_Ids[a])
+                      var ins = Fmily_Ids[a]
+                      var benrendom = ''
+                      benrendom += '<li id="shixiao" class="' + ins + '"><p id="space-between">'
+                      benrendom += '<span><b>' + myname[a] + '</b>（' + guanxi[a] + '）</span><a>账户失效</a>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[0] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[1] + '</text></p>'
+                      benrendom += '<p id="' + a + '"><em></em><text>' + CZtext[2] + '</text></p>'
+                      benrendom += '<p><span><b>' + balance + '</b>&nbsp;余额（元）</span>'
+                      benrendom += '<button class="SXRecharges">立即充值</button></p>'
+                      benrendom += '</li>'
+                      $('.banner-list ul').append(benrendom)
+                      console.log($('ul li').length, 'li length......')
+                      //判断长度是否大于12
+                      if ($('ul li').length >= 14) {
+                        $('.add').hide()
+                      } else {
+                        $('.add').show()
+                      }
+                    }
+                  },
+                  error: function (rej) {
+                    console.log(rej)
+                  }
+                })
+              })
+              setTimeout(function () {
+                console.log(res.msg.length)
+                if (res.msg.length < 1) {
+                  //判断是否一位家人都没有添加显示添加家人
+                  var benrendom =
+                    '<li id="weijiaru"><h6>' + names + '您还未添加家人</h6><p><span>爱自己更爱家人</span><button>马上添加</button></p></li>'
+                  $('.banner-list ul').append(benrendom)
+                  var wid = $('ul li').length * $('ul li').outerWidth()
+                  $('.banner-list ul').width(wid + 190 + 'px')
+                  // var myIscroll = new IScroll('.banner-list', {
+                  //   scrollY: true,
+                  //   scrollX: true,
+                  //   click: true
+                  // });
+                  var contDom = 0
+                  var doms = $('.banner-list ul li')
+                  var doml = $('.banner-list ul li').length
+                  $.each(doms, function (a, b) {
+                    if ($(b).attr('id') == 'chongzu') {
+                      contDom++
+                    } else if ($(b).attr('id') == 'weijiaru') {
+                      contDom++
+                    } else if ($(b).attr('id') == 'weishimin') {
+                      contDom++
+                    }
+                  })
+                  if (contDom == doml) {
+                    $('.add .addbox').hide()
+                    console.log($('#weishimin').css('display'))
+                    if ($('#weishimin').css('display') || $('#buzhu').css('display')) {
+                      //$('.finalWrap').show()
+                    } else {
+                      $('.finalWrap').hide()
+                    }
+                    $('.loading').hide()
+                  } else {
+                    $('.loading').hide()
+                    console.log($('#weishimin').css('display'))
+                    if ($('#weishimin').css('display') || $('#buzhu').css('display')) {
+                      // $('.finalWrap').show()
+                    } else {
+                      $('.finalWrap').hide()
+                    }
+                  }
+                } else if (res.msg.length > 0 && res.msg.length < 13) {
+                  //判断可以添加更多家人
+                  var benrendom = '<li id="mstj"><h6>' + names + '，您已添加' + res.msg.length + '位家人<br>您还可以添加更多家人</h6><p><span>爱自己更爱家人</span><button>马上添加</button></p></li>'
+                  $('.banner-list ul').append(benrendom)
+                  var contDom = 0
+                  console.log($('.banner-list ul li'), 'ul.................')
+                  var doms = $('.banner-list ul li')
+                  var doml = $('.banner-list ul li').length
+                  $.each(doms, function (a, b) {
+                    if ($(b).attr('id') == 'chongzu') {
+                      contDom++
+                    } else if ($(b).attr('id') == 'mstj') {
+                      contDom++
+                    } else if ($(b).attr('id') == 'weishimin') {
+                      contDom++
+                    }
+                  })
+                  if (contDom == doml) {
+                    $('.add .addbox').hide()
+                    $('.loading').hide()
+                    //$('.finalWrap').hide()
+                  } else {
+                    $('.loading').hide()
+                  }
+                }
+                var wid = $('ul li').length * $('ul li').outerWidth()
+                $('.banner-list ul').width(wid + 190 + 'px')
+                // var myIscroll = new IScroll('.banner-list', {
+                //   scrollY: true,
+                //   scrollX: true,
+                //   click: true
+                // });
+                console.log($('ul li').length, 'li length......')
+                //如果卡片大于12个就不再能添加
+                if ($('ul li').length >= 13) {
+                  var wid = 13 * $('ul li').outerWidth()
+                  $('.banner-list ul').width(wid + 190 + 'px')
+                  // var myIscroll = new IScroll('.banner-list', {
+                  //   scrollY: true,
+                  //   scrollX: true,
+                  //   click: true
+                  // });
+                }
+                //判断长度是否大于12
+                if ($('ul li').length >= 14) {
+                  $('.add').hide()
+                } else {
+                  $('.add').show()
+                }
+                //跳转页面family_id传递
+                $('.banner-list ul li').on('click', function () {
+                  if ($(this).attr('id') == 'mstj') {
+                    update_page_st(openid, channel, "mstj", 'submit_mstj', 0, "");
+                    window.location.href =
+                      "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+                    return false
+                  }
+                  if ($(this).attr('id') == 'weishimin') {
+                    update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+                    var NomarlGuanxi = $('#weishimin').children().eq(0).children().eq(0).children().eq(0).text()
+                    var NomarlBlance = $('#weishimin').children().eq(2).children().eq(0).children().eq(0).text()
+                    console.log(NomarlGuanxi, NomarlBlance)
+                    window.sessionStorage.setItem('GuanXi', NomarlGuanxi)
+                    window.sessionStorage.setItem('NomarlBlance', NomarlBlance)
+                    window.sessionStorage.setItem('CardId', '')
+                    window.sessionStorage.setItem('UserNames', '')
+                    var cookieGx = escape(NomarlGuanxi)
+                    window.setCookie('GuanXi', cookieGx)
+                    window.setCookie('NomarlBlance', NomarlBlance)
+                    window.setCookie('CardId', '')
+                    window.setCookie('UserNames', '')
+                    var zhiy = $(this).children(0).children(0).children(0).text()
+                    console.log(zhiy)
+                    console.log(new_falses, '........newfalses')
+                    if (new_falses) {
+                      window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                      return false;
+                    }
+                    if (newBtnFlag == 1) {
+                      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/newinfos"
+                    } else {
+                      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/familyInfo1"
+                    }
+                    return false
+                  }
+                  if ($(this).attr('id') == 'weijiaru') {
+                    window.location.href = 'https://www.bihubao.com/index.php/Weixin/Ensure/selectfamily/openid/' + openid + '.html'
+                    return false
+                  }
+                  var ids = $(this).attr('class')
+                  //点击卡片名字和关系存入sessionStorage
+                  var userNames = $(this).children().eq(0).children().eq(0).text()
+                  //截取关系
+                  var left_ = $(this).children().eq(0).children().eq(0).text().indexOf('（')
+                  var right_ = $(this).children().eq(0).children().eq(0).text().indexOf('）')
+                  var guanXi = $(this).children().eq(0).children().eq(0).text().slice(left_ + 1, right_)
+                  //名字
+                  var userNames = $(this).children().eq(0).children().eq(0).children().eq(0).text()
+                  window.sessionStorage.setItem('UserNames', userNames)
+                  window.sessionStorage.setItem('GuanXi', guanXi)
+                  var cookieGx = escape(guanXi)
+                  var cookieuserNames = escape(userNames)
+                  window.setCookie('UserNames', cookieuserNames)
+                  window.setCookie('GuanXi', cookieGx)
+                  //处理身份证
+                  if ($(this).index() == 0) {
+                    window.sessionStorage.setItem('CardId', Mycarid)
+                    window.setCookie('CardId', Mycarid)
+                  }
+                  window.sessionStorage.setItem('family_id', ids)
+                  window.setCookie('family_id', ids)
+                  parameter = {}
+                  openid = getCookie('openid');
+                  parameter['openid'] = openid;
+                  parameter = JSON.stringify(parameter)
+                  $.ajax({
+                    url: 'https://www.bihubao.com/index.php/Api/User/getUserInfo',
+                    type: 'GET',
+                    dataType: "json",
+                    data: {
+                      'parameter': parameter
+                    },
+                    success: function (res) {
+                      // maidian ("pv", res.mg.uid, channel);
+                      if (res.msg.isfinish && res.msg.isfinish > 0) {
+                        //加入互助
+                        if ($(this).attr('id') == 'weijiaru') {
+                          newzflah = false
+                          window.location.href =
+                            'https://www.bihubao.com/index.php/Weixin/Ensure/selectfamily/openid/' + openid + '.html'
+                        } else if ($(this).attr('id') == 'weishimin') {
+                          newzflah = false
+                          update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+                          var NomarlGuanxi = $('#weishimin').children().eq(0).children().eq(0).children().eq(0).text()
+                          var NomarlBlance = $('#weishimin').children().eq(2).children().eq(0).children().eq(0).text()
+                          console.log(NomarlGuanxi, NomarlBlance)
+                          window.sessionStorage.setItem('GuanXi', NomarlGuanxi)
+                          window.sessionStorage.setItem('NomarlBlance', NomarlBlance)
+                          window.sessionStorage.setItem('CardId', '')
+                          window.sessionStorage.setItem('UserNames', '')
+                          var cookieGx = escape(NomarlGuanxi)
+                          window.setCookie('GuanXi', cookieGx)
+                          window.setCookie('NomarlBlance', NomarlBlance)
+                          window.setCookie('CardId', '')
+                          window.setCookie('UserNames', '')
+                          var zhiy = $(this).children(0).children(0).children(0).text()
+                          console.log(zhiy)
+                          if (new_falses) {
+                            window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                            return false;
+                          }
+                          if (newBtnFlag == 1) {
+                            window.location.href =
+                              "https://www.bihubao.com/index.php/Api/Ensure/newinfos"
+                          } else {
+                            window.location.href =
+                              "https://www.bihubao.com/index.php/Api/Ensure/familyInfo1"
+                          }
+                        } else if ($(this).attr('id') == 'mstj') {
+                          newzflah = false
+                          update_page_st(openid, channel, "mstj", 'submit_mstj', 0, "");
+                          window.location.href =
+                            "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+                        } else {
+                          update_page_st(openid, 0, "Credentials", 'submit_Credentials', 0, "");
+                          if (newzflah) {
+                            window.location.href =
+                              "https://www.bihubao.com/Weixin/Newuser/Credentials.html";
+                          }
+                        }
+                      } else {
+                        //交了1块钱未加入互助
+                        if ($(this).attr('id') == 'weijiaru') {
+                          window.location.href =
+                            'https://www.bihubao.com/index.php/Weixin/Ensure/selectfamily/openid/' + openid + '.html'
+                        } else if ($(this).attr('id') == 'weishimin') {
+                          update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+                          var NomarlGuanxi = $('#weishimin').children().eq(0).children().eq(0).children().eq(0).text()
+                          var NomarlBlance = $('#weishimin').children().eq(2).children().eq(0).children().eq(0).text()
+                          console.log(NomarlGuanxi, NomarlBlance)
+                          window.sessionStorage.setItem('GuanXi', NomarlGuanxi)
+                          window.sessionStorage.setItem('NomarlBlance', NomarlBlance)
+                          window.sessionStorage.setItem('CardId', '')
+                          window.sessionStorage.setItem('UserNames', '')
+                          var cookieGx = escape(NomarlGuanxi)
+                          window.setCookie('GuanXi', cookieGx)
+                          window.setCookie('NomarlBlance', NomarlBlance)
+                          window.setCookie('CardId', '')
+                          window.setCookie('UserNames', '')
+                          if (new_falses) {
+                            window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                            return false;
+                          }
+                          if (newBtnFlag == 1) {
+                            window.location.href =
+                              "https://www.bihubao.com/index.php/Api/Ensure/newinfos"
+                          } else {
+                            window.location.href =
+                              "https://www.bihubao.com/index.php/Api/Ensure/familyInfo1"
+                          }
+                        } else {
+                          update_page_st(openid, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+                          if (!openidIsshow) {
+                            window.location.href = 'https://www.bihubao.com/index.php/Api/Wxpay/unlicensed'
+                          } else {
+                            if (finalWrap) {
+                              $('.finalWrap').show()
+                            }
+                          }
+                          $('.BZRecharges').on('click', function () {
+                            if (!openidIsshow) {
+                              window.location.href = 'https://www.bihubao.com/index.php/Api/Wxpay/unlicensed'
+                            } else {
+                              if (finalWrap) {
+                                $('.finalWrap').show()
+                              }
+                            }
+                          })
+                        }
+                      }
+                    }
+                  })
+                })
+                //去补全信息
+                $('#weishimin').on('click', function () {
+                  var NomarlGuanxi = $(this).children().eq(0).children().eq(0).children().eq(0).text()
+                  var NomarlBlance = $(this).children().eq(2).children().eq(0).children().eq(0).text()
+                  console.log(NomarlGuanxi, NomarlBlance)
+                  window.sessionStorage.setItem('GuanXi', NomarlGuanxi)
+                  window.sessionStorage.setItem('NomarlBlance', NomarlBlance)
+                  window.sessionStorage.setItem('CardId', '')
+                  window.sessionStorage.setItem('UserNames', '')
+                  var cookieGx = escape(NomarlGuanxi)
+                  window.setCookie('GuanXi', cookieGx)
+                  window.setCookie('NomarlBlance', NomarlBlance)
+                  window.setCookie('CardId', '')
+                  window.setCookie('UserNames', '')
+                  update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+                  if (new_falses) {
+                    window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                    return false;
+                  }
+                  if (weishimin == 1) {
+                    window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/newinfos"
+                  } else {
+                    window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/familyInfo1";
+                  }
+                })
+                //本人的充值按钮
+                $('#Recharges').on('click', function (e) {
+                  e.stopPropagation();
+                  var domss = $('#Recharges').parents()[1]
+                  window.sessionStorage.setItem('family_id', $(domss).attr('class'))
+                  var zhi = $(domss).children().eq(0).children().eq(0).children().eq(0).text()
+                  var cookieuseranme = escape(zhi)
+                  window.sessionStorage.setItem('UserNames', zhi)
+                  window.setCookie('UserNames', cookieuseranme)
+                  update_page_st(openid, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+                  if (newInfinish) {
+                    $('.finalWrap').show()
+                  } else {
+                    window.location.href = "https://www.bihubao.com/Weixin/Newuser/NewRecharge.html";
+                  }
+                })
+                //添加家人按钮
+                $('.banner-list ul #mstj').on('click', function () {
+                  update_page_st(openid, channel, "mstj", 'submit_mstj', 0, "");
+                  window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+                })
+                //未加入卡片点击
+                $('.banner-list ul #weijiaru').on('click', function () {
+                  window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+                })
+              }, 500)
+            },
+            error: function (rej) {
+              console.log(rej)
+            }
+          })
+        }
+      }
+      setTimeout(function () {
+        demo()
+      }, 50)
+      //个人信息
+      function getuserinfor(resData) {
+        resData = JSON.parse(resData)
+        unionid = resData.msg.unionid
+        console.log(resData, '个人信息')
+        //判断用户是否加入互助
+        if (resData.msg.isfinish <= 0 || resData.msg == '未找到用户信息') {
+          FriendFlag = false
+          parameter = {}
+          // openid = getCookie('openid');
+          parameter['openid'] = openid;
+          parameter = JSON.stringify(parameter)
+          $.ajax({
+            url: 'https://www.bihubao.com/index.php/Api/Ensure/getLicensedUserList',
+            type: 'GET',
+            dataType: "json",
+            data: {
+              'parameter': parameter
+            },
+            success: function (res) {
+              // res = JSON.parse(res)
+              newDate = res.msg
+              console.log(newDate, '获取用户是否有需要补充信息的家人3333333333333')
+              //需要补全信息或者交了一元
+              if (!newDate.length == 0) {
+                newFlag = false;
+                FriendFlag = false
+                newInfinish = true
+                $('.list-normal').hide()
+                //$('.finalWrap').show()
+                $('#oneinfroNormal').show()
+                $('#inforlv').hide()
+                $.each(newDate, function (a, b) {
+                  if (b.name) {
+                    console.log(b.name + '交了钱')
+                    //余额不足
+                    var benrendom = ''
+                    benrendom += '<li id="buzhu" class="' + b.fid + '"><p id="space-between">'
+                    benrendom += '<span><b>' + b.name + '</b>（' + b.relation + '）</span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />余额不足</a>'
+                    benrendom += '<p id="BenrenhideP00"><em></em><text>重疾互助计划（未生效）</text></p>'
+                    benrendom += '<p id="BenrenhideP11"><em></em><text>意外医疗互助计划（未生效）</text></p>'
+                    benrendom += '<p id="BenrenhideP22"><em></em><text>意外身故互助计划（未生效）</text></p>'
+                    benrendom += '<p><span><b>1</b>&nbsp;余额（元）</span>'
+                    benrendom += '<button class="Recharges">立即充值</button></p>'
+                    benrendom += '</li>'
+                    //     var benrendom =
+                    //       `<li id="buzhu" class=${b.fid}>
+                    //         <p id="space-between">
+                    //           <span><b>${b.name}</b>（${b.relation}）</span>
+                    //           <a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />余额不足</a>
+                    //         </p>
+                    //         <p id="BenrenhideP00">
+                    //           <em></em>
+                    //           <text>重疾互助计划（未生效）</text>
+                    //         </p>
+                    //         <p id="BenrenhideP11">
+                    //           <em></em>
+                    //           <text>意外医疗互助计划（未生效）</text>
+                    //         </p>
+                    //         <p id="BenrenhideP22">
+                    //           <em></em>
+                    //           <text>意外身故互助计划（未生效）</text>
+                    //         </p>
+                    //         <p>
+                    //           <span><b>1</b>&nbsp;余额（元）</span>
+                    //           <button id='Recharges'>立即充值</button>
+                    //         </p>
+                    //  </li>`
+                    $('.banner-list ul').append(benrendom)
+                    //判断长度是否大于12
+                    if ($('ul li').length >= 14) {
+                      $('.add').hide()
+                    } else {
+                      $('.add').show()
+                    }
+                  } else {
+                    var benrendom = ''
+                    benrendom += '<li id="weishimin">'
+                    benrendom += '<p id="space-between"><span><b>' + b.relation + '</b></span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />待激活</a></p>'
+                    benrendom += '<h6>您有家人权益未激活,请及时激活</h6>'
+                    benrendom += '<p><span><b>1</b>&nbsp;余额（元）</span><button id="addXinxi">激活权益</button></p>'
+                    benrendom += '</li>'
+                    // var benrendom =
+                    //   `<li id="weishimin">
+                    //     <p id="space-between">
+                    //       <span><b>${b.relation}</b></span>
+                    //       <a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />待激活</a>
+                    //     </p>
+                    //     <h6>您有家人权益未激活,请及时激活</h6>
+                    //     <p>
+                    //       <span><b>1</b>&nbsp;余额（元）</span>
+                    //       <button id="addXinxi">激活权益</button>
+                    //     </p>
+                    //   </li>`
+                    console.log(benrendom)
+                    $('.banner-list ul').append(benrendom)
+                    //判断长度是否大于12
+                    if ($('ul li').length >= 14) {
+                      $('.add').hide()
+                    } else {
+                      $('.add').show()
+                    }
+                  }
+                })
+              } else {
+                //完全没有加入互助
+                newInfinish = false
+                FriendFlag = false
+                $('.list-normal').show()
+                $('.loading').hide()
+                $('.header img').attr('src',
+                  'https://www.bihubao.com/Public/images/NewUser/imgs/logome.png')
+                $('#oneinfro').hide()
+                $('#inforlv').hide()
+                $('#oneinfroNormal').show()
+                $('.banner-list ul').hide()
+                $('.banner-list ol').show()
+                $('.tips_top').hide()
+                $('.wrapper .nav2 span c').hide()
+                //初始化滚动条
+                var wids2 = $('ol li').eq(0).outerWidth()
+                var wid = $('ol li').length * wids2
+                $('.banner-list ol').width(wid + 190 + 'px')
+                // var myIscroll = new IScroll('.list-normal', {
+                //   scrollY: true,
+                //   scrollX: true,
+                //   click: true
+                // });
+                $('.finalWrap').remove()
+                $('.add').hide()
+              }
+            }
+          })
+        } else {
+          newFlag = true
+          $('.header img').attr('src', resData.msg.headimg)
+          $('#oneinfro').show()
+          $('#inforlv').show()
+          $('#oneinfroNormal').hide()
+          $('#oneinfro b').text(resData.msg.name)
+          $('#oneinfro span').text('会员编号:' + resData.msg.member_id)
+          $('.header #inforlv>a').text('Lv' + ' ' + resData.msg.level)
+          //用户称号昵称转换图片
+          switch (resData.msg.label_name) {
+            case '青铜壁虎':
+              $('#inforlv img').attr('src',
+                'https://www.bihubao.com/Public/images/NewUser/imgs/me_icon_qingtong@2x.png')
+              break;
+            case '白银壁虎':
+              $('#inforlv img').attr('src',
+                'https://www.bihubao.com/Public/images/NewUser/imgs/me_icon_baiyin@2x.png')
+              break;
+            case '黄金壁虎':
+              $('#inforlv img').attr('src',
+                'https://www.bihubao.com/Public/images/NewUser/imgs/me_icon_huangjin@2x.png')
+              break;
+            default:
+              $('#inforlv img').attr('src',
+                '')
+          }
+          $('.banner-list ul').show()
+          $('.banner-list ol').hide()
+        }
+        $('.header oneinfro b').text(resData.msg.nickname)
+      }
+      //本人信息列表
+      function getUserinforList(res) {
+        res = JSON.parse(res)
+        parameter = JSON.parse(parameter)
+        //存储本人身份证号码
+        Mycarid = res.msg.cardno
+        parameter['family_id'] = 0
+        parameter = JSON.stringify(parameter)
+        $.ajax({
+          url: 'https://www.bihubao.com/index.php/Api/User/getUserEnsureInfo',
+          type: 'get',
+          data: {
+            'parameter': parameter
+          },
+          success: function (res) {
+            var CZtext = []
+            res = JSON.parse(res)
+            console.log(res, '本人信息列表')
+            var Benrenbalance = res.msg.balance
+            houseNum = res.msg.house
+            //判断保险类型
+            if (res.msg.illness == '1') {
+              CZtext.push('重疾互助计划')
+            } else if (res.msg.older == '1') {
+              CZtext.push('老年防癌互助计划')
+            } else {
+              CZtext.push('重疾互助计划（未加入）')
+            }
+            // if (res.msg.illness == '1') {
+            //   CZtext.push('重疾互助计划')
+            // } else {
+            //   CZtext.push('重疾互助计划（未加入）')
+            // }
+            if (res.msg.accident == '1') {
+              CZtext.push('意外医疗互助计划')
+            } else if (res.msg.accident == '2') {
+              CZtext.push('意外医疗互助计划（超龄退出）')
+            } else {
+              CZtext.push('意外医疗互助计划（未加入）')
+            }
+            if (res.msg.dead == '1') {
+              CZtext.push('意外身故互助计划')
+            } else if (res.msg.dead == '2') {
+              CZtext.push('意外身故互助计划（超龄退出）')
+            } else {
+              CZtext.push('意外身故互助计划（未加入）')
+            }
+            // if (res.msg.older == '1') {
+            //   CZtext.push('老年防癌互助计划')
+            // } else {
+            //   CZtext.push('老年防癌互助计划（未加入）')
+            // }
+            if (res.msg.house == '1') {
+              CZtext.push('家财意外互助计划')
+            } else {
+              CZtext.push('家财意外互助计划（未加入）')
+            }
+            //判断本人是否有效失效冻结状态
+            if (res.msg.freeze == 1) {
+              IsThaw = true
+              //账户冻结
+              var benrendom = ''
+              benrendom += '<li id="dongjie" class="0"><p id="space-between">'
+              benrendom += '<span><b>' + names + '</b>（本人）</span> <a class="wraning" style="color:#e60012;">账户冻结</a></p>'
+              benrendom += '<p id="BenrenhideP000"><em></em><text>' + CZtext[0] + '</text></p>'
+              benrendom += '<p id="BenrenhideP111"><em></em><text>' + CZtext[1] + '</text></p>'
+              benrendom += '<p id="BenrenhideP222"><em></em><text>' + CZtext[2] + '</text></p>'
+              benrendom += '<p><span><b>' + Benrenbalance + '</b>&nbsp;余额（元）</span>'
+              benrendom += '<button id="Recharges">立即充值</button></p>'
+              benrendom += '</li>'
+              console.log(CZtext.length, '数组长度')
+              $('.banner-list ul').append(benrendom)
+              console.log($('ul li').length, 'li length......')
+              //判断长度是否大于12
+              if ($('ul li').length >= 14) {
+                $('.add').hide()
+              } else {
+                $('.add').show()
+              }
+            } else if (res.msg.freeze == 2) {
+              //失效
+              var benrendom = ''
+              benrendom += '<li id="shixiao" class="0"><p id="space-between">'
+              benrendom += '<span><b>' + names + '</b>（本人）</span><a>账户失效</a></p>'
+              benrendom += '<p id="BenrenhideP000"><em></em><text>' + CZtext[0] + '</text></p>'
+              benrendom += '<p id="BenrenhideP111"><em></em><text>' + CZtext[1] + '</text></p>'
+              benrendom += '<p id="BenrenhideP222"><em></em><text>' + CZtext[2] + '</text></p>'
+              benrendom += '<p><span><b>' + Benrenbalance + '</b>&nbsp;余额（元）</span>'
+              benrendom += '<button id="Recharges">立即充值</button></p>'
+              benrendom += '</li>'
+              $('.banner-list ul').append(benrendom)
+              //判断长度是否大于12
+              if ($('ul li').length >= 14) {
+                $('.add').hide()
+              } else {
+                $('.add').show()
+              }
+            } else {
+              //有效
+              if (Benrenbalance >= 6) {
+                //余额充足
+                var benrendom = ''
+                benrendom += '<li id="chongzu" class="0"><p id="space-between">'
+                benrendom += '<span><b style="max-width: 2rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-weight: normal;">' + names + '</b>（本人）</span> <a>余额充足</a></p>'
+                benrendom += '<p id="BenrenhideP000"><em></em><text>' + CZtext[0] + '</text></p>'
+                benrendom += '<p id="BenrenhideP111"><em></em><text>' + CZtext[1] + '</text></p>'
+                benrendom += '<p id="BenrenhideP222"><em></em><text>' + CZtext[2] + '</text></p>'
+                benrendom += '<p><span><b>' + Benrenbalance + '</b>&nbsp;余额（元）</span>'
+                benrendom += '<button id="Recharges">立即充值</button></p>'
+                benrendom += '</li>'
+                $('.banner-list ul').append(benrendom)
+                console.log(CZtext.length)
+                //判断长度是否大于12
+                if ($('ul li').length >= 14) {
+                  $('.add').hide()
+                } else {
+                  $('.add').show()
+                }
+              } else if (Benrenbalance < 6) {
+                //余额不足
+                var benrendom = ''
+                benrendom += '<li id="buzhu" class="0"><p id="space-between">'
+                benrendom += '<span><b>' + names + '</b>（本人）</span> <a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />余额不足</a></p>'
+                benrendom += '<p id="BenrenhideP000"><em></em><text>' + CZtext[0] + '</text></p>'
+                benrendom += '<p id="BenrenhideP111"><em></em><text>' + CZtext[1] + '</text></p>'
+                benrendom += '<p id="BenrenhideP222"><em></em><text>' + CZtext[2] + '</text></p>'
+                benrendom += '<p><span><b>' + Benrenbalance + '</b>&nbsp;余额（元）</span>'
+                benrendom += '<button id="Recharges">立即充值</button></p>'
+                benrendom += '</li>'
+                $('.banner-list ul').append(benrendom)
+                console.log(CZtext.length)
+                console.log($('ul li').length, 'li length......')
+                //判断长度是否大于12
+                if ($('ul li').length >= 14) {
+                  $('.add').hide()
+                } else {
+                  $('.add').show()
+                }
+              }
+            }
+            //获取用户是否有需要补充信息的家人
+            getfamilyinfor(res)
+          },
+          error: function (rej) {
+
+          }
+
+        })
+      }
+      //获取朋友列表
+      function getFriendsList() {
+        var parameter = {}
+        parameter['openid'] = openid
+        parameter = JSON.stringify(parameter)
+        $.ajax({
+          url: 'https://www.bihubao.com/Api/RecommendMananger/getFriendList',
+          type: 'get',
+          data: {
+            'parameter': parameter
+          },
+          dataType: 'json',
+          success: function (res) {
+            console.log(res, '朋友数据的成功的返回值')
+            $.each(res.msg, function (item, index) {
+              var dom = ''
+              if (index.isfinish && index.isfinish > 0) {
+                if (index.balance >= 6 && index.freeze == 0) {
+                  var a_name = ''
+                  var b_name = ''
+                  var i_name = ''
+                  //余额充足
+                  if (index.a_name) {
+                    a_name = index.a_name
+                  } else {
+                    a_name = '重疾互助计划（未加入）'
+                  }
+                  if (index.d_name) {
+                    b_name = index.d_name
+                  } else {
+                    b_name = '意外医疗互助计划（未加入）'
+                  }
+                  if (index.i_name) {
+                    i_name = index.i_name
+                  } else {
+                    i_name = '意外身故互助计划（未加入）'
+                  }
+                  var dom = ''
+                  dom += '<li class="' + index.id + '"><p id="space-between">'
+                  dom += '<span><b>' + index.user_name + '</b></span> <a>余额充足</a></p>'
+                  dom += '<p><em></em><text>' + a_name + '</text></p>'
+                  dom += '<p><em></em><text>' + b_name + '</text></p>'
+                  dom += '<p><em></em><text>' + i_name + '</text></p>'
+                  dom += '<p><span><b>' + index.balance + '</b>&nbsp;余额（元）</span>'
+                  dom += '<button id="Friendok">好友已领取</button></p>'
+                  dom += '</li>'
+                  // dom = `<li class="${index.id}">
+                  //           <p id="space-between">
+                  //             <span><b>${index.user_name}</b></span>
+                  //             <a>余额充足</a>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${a_name}</text>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${b_name}</text>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${i_name}</text>
+                  //           </p>
+                  //           <p>
+                  //           <span><b>${index.balance}</b>&nbsp;余额（元）</span>
+                  //           <button class='Friendok'>好友已领取</button>
+                  //           </p>
+                  //         </li>`
+                } else if (index.balance < 6 && index.freeze == 0) {
+                  //余额不足
+                  var a_name = ''
+                  var b_name = ''
+                  var i_name = ''
+                  if (index.a_name) {
+                    a_name = index.a_name
+                  } else {
+                    a_name = '重疾互助计划（未加入）'
+                  }
+                  if (index.d_name) {
+                    b_name = index.d_name
+                  } else {
+                    b_name = '意外医疗互助计划（未加入）'
+                  }
+                  if (index.i_name) {
+                    i_name = index.i_name
+                  } else {
+                    i_name = '意外身故互助计划（未加入）'
+                  }
+                  var dom = ''
+                  dom += '<li id="familybuzhu" class="' + index.id + '"><p id="space-between">'
+                  dom += '<span><b>' + index.user_name + '</b></span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" alt="">余额不足</a></p>'
+                  dom += '<p><em></em><text>' + a_name + '</text></p>'
+                  dom += '<p><em></em><text>' + b_name + '</text></p>'
+                  dom += '<p><em></em><text>' + i_name + '</text></p>'
+                  dom += '<p><span><b>' + index.balance + '</b>&nbsp;余额（元）</span>'
+                  dom += '<button id="Friendok">好友已领取</button></p>'
+                  dom += '</li>'
+                  // dom = `<li id="familybuzhu" class="${index.id}">
+                  //         <p id="space-between">
+                  //               <span><b>${index.user_name}</b></span>
+                  //               <a>
+                  //                 <img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" alt="">余额不足
+                  //               </a>
+                  //             </p>
+                  //           <p>
+                  //           <em></em><text>${a_name}</text>
+                  //           </p>
+                  //           <p>
+                  //           <em></em><text>${b_name}</text>
+                  //         </p>
+                  //           <p>
+                  //             <em></em><text>${i_name}</text>
+                  //           </p>
+                  //           <p>
+                  //             <span><b>${index.balance}</b>&nbsp;余额（元）</span>
+                  //             <button class='Friendok'>好友已领取</button>
+                  //           </p>
+                  //           </li>`
+                } else if (index.freeze == 1) {
+                  IsThaw = true
+                  //冻结
+                  var a_name = ''
+                  var b_name = ''
+                  var i_name = ''
+                  if (index.a_name) {
+                    a_name = index.a_name
+                  } else {
+                    a_name = '重疾互助计划（未加入）'
+                  }
+                  if (index.d_name) {
+                    b_name = index.d_name
+                  } else {
+                    b_name = '意外医疗互助计划（未加入）'
+                  }
+                  if (index.i_name) {
+                    i_name = index.i_name
+                  } else {
+                    i_name = '意外身故互助计划（未加入）'
+                  }
+                  var dom = ''
+                  dom += '<li id="familydongjie" class="' + index.id + '" onclick="txCZ(this);"><p id="space-between">'
+                  dom += '<span><b>' + index.user_name + '</b></span><a>账户冻结</a></p>'
+                  dom += '<p><em></em><text>' + a_name + '</text></p>'
+                  dom += '<p><em></em><text>' + b_name + '</text></p>'
+                  dom += '<p><em></em><text>' + i_name + '</text></p>'
+                  dom += '<p><span><b>' + index.balance + '</b>&nbsp;余额（元）</span>'
+                  dom += '<button class="Friendtx">提醒充值</button></p>'
+                  dom += '</li>'
+                  // dom = `<li  class="${index.id}" id="familydongjie" onclick="txCZ(this);">
+                  //           <p id="space-between">
+                  //             <span><b>${index.user_name}</b></span>
+                  //             <a>账户冻结</a>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${a_name}</text>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${b_name}</text>
+                  //           </p>
+                  //           <p>
+                  //             <em></em><text>${i_name}</text>
+                  //           </p>
+                  //           <p><span><b>${index.balance}</b>&nbsp;余额（元）</span><button class='Friendtx'>提醒充值</button>
+                  //           </p>
+                  //         </li>`
+                } else if (index.freeze == 2) {
+                  //失效
+                  var a_name = ''
+                  var b_name = ''
+                  var i_name = ''
+                  if (index.a_name) {
+                    a_name = index.a_name
+                  } else {
+                    a_name = '重疾互助计划（未加入）'
+                  }
+                  if (index.d_name) {
+                    b_name = index.d_name
+                  } else {
+                    b_name = '意外医疗互助计划（未加入）'
+                  }
+                  if (index.i_name) {
+                    i_name = index.i_name
+                  } else {
+                    i_name = '意外身故互助计划（未加入）'
+                  }
+                  var dom = ''
+                  dom += '<li id="familyshixiao" class="' + index.id + '" onclick="txCZ(this);><p id="space-between">'
+                  dom += '<span><b>' + index.user_name + '</b></span><a>账户失效</a></p>'
+                  dom += '<p><em></em><text>' + a_name + '</text></p>'
+                  dom += '<p><em></em><text>' + b_name + '</text></p>'
+                  dom += '<p><em></em><text>' + i_name + '</text></p>'
+                  dom += '<p><span><b>' + index.balance + '</b>&nbsp;余额（元）</span>'
+                  dom += '<button class="Friendtx">提醒充值</button></p>'
+                  dom += '</li>'
+                }
+                $('#scroll-goodfriend').append(dom)
+              } else if (index.isfinish && index.isfinish == 0) {
+                //权益未生效
+                var dom = ''
+                dom += '<li id="weishiminFriend" class="' + index.id + '"><p id="space-between">'
+                dom += '<span><b>' + index.user_name + '</b></span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />权益待激活</a></p>'
+                dom += '<h6>您有亲友权益未激活,请及时激活</h6>'
+                dom += '<p><span><b>' + index.balance + '</b>&nbsp;余额（元）</span>'
+                dom += '<button id="Friendno">再次邀请</button></p>'
+                dom += '</li>'
+                // dom = ` <li class="${index.id}" id="weishiminFriend">
+                //       <p id="space-between">
+                //         <span><b>${index.user_name}</b></span>
+                //         <a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />权益待激活</a>
+                //       </p>
+                //       <h6>您有朋友权益未激活,请及时激活</h6>
+                //       <p><span><b>${index.balance}</b>&nbsp;余额（元）</span>
+                //         <button id="Friendno">再次邀请</button>
+                //       </p>
+                //     </li>`
+                $('#scroll-goodfriend').append(dom)
+              }
+            })
+            console.log($('#scroll-goodfriend li').length, '............朋友列表的长度')
+            var Friendlens = $('#scroll-goodfriend li').length
+            if (Friendlens == 0) {
+              var lastdom = ''
+              lastdom += '<li id="familymstj" onclick="gotodragonboat()"><h6>' + names + '您还未邀请亲朋好友</h6><p><span>邀亲朋好友共享互助</span><button  onclick="gotodragonboat()">马上添加</button></p></li>'
+              // var lastdom = `  <li id="familymstj" onclick="gotodragonboat()">
+              //                 <h6>${names}您还未邀请好友</h6>
+              //                 <p><span>邀好友共享互助</span>
+              //                 <button  onclick="gotodragonboat()">马上添加</button>
+              //               </p>
+              //             </li>`
+              $('#scroll-goodfriend').append(lastdom)
+            } else {
+              var lastdom = ''
+              lastdom += '<li id="familymstj" onclick="gotodragonboat()"><h6>' + names + '您已添加' + Friendlens + '位好友<br>您还可以添加更多亲朋好友</h6><p><span>邀好友共享互助</span><button  onclick="gotodragonboat()">邀请更多</button></p></li>'
+              // var lastdom = `<li id="familymstj" onclick="gotodragonboat()">
+              //                 <h6>${names}，您已添加${Friendlens}位好友<br>您还可以添加更多好友</h6>
+              //                 <p><span>邀好友共享互助</span>
+              //                 <button onclick="gotodragonboat()">邀请更多</button>
+              //                 </p>
+              //               </li>`
+              $('#scroll-goodfriend').append(lastdom)
+            }
+            $.each($('#scroll-goodfriend li'), function (item, index) {
+              $(index).on('click', function () {
+                //朋友激活权益
+                if ($(index).attr('id') == 'weishiminFriend') {
+                  var FriendId = $(this).attr('class')
+                  window.sessionStorage.setItem('FriendId', FriendId)
+                  window.location.href = "https://www.bihubao.com/Weixin/Newuser/indexFriend_test.html"
+                }
+              })
+            })
+          },
+          error: function (rej) {
+            console.log(rej)
+          }
+        })
+      }
+      //获取用户是否有需要补充信息的家人
+      function getfamilyinfor() {
+        if (newFlag) {
+          openid = getCookie('openid');
+          parameter['openid'] = openid;
+          parameter = JSON.parse(parameter)
+          // parameter['openid'] = 'o4roCs4lLYPIDL0t5JU4ZcCkAk7g'
+          parameter = JSON.stringify(parameter)
+          $.ajax({
+            url: 'https://www.bihubao.com/index.php/Api/User/getUserFamilyNoinfo',
+            type: 'GET',
+            data: {
+              'parameter': parameter
+            },
+            success: function (res) {
+              res = JSON.parse(res)
+              newDate = res.msg
+              console.log(res, '获取用户是否有需要补充信息的家人')
+              //需要补全信息
+              if (res.msg) {
+                if (!res.msg.relation == '') {
+                  //判断是否未实名
+                  var benrendom = '<li id="weishimin"><p id="space-between"><span><b>家人</b></span><a><img src="https://www.bihubao.com/Public/images/NewUser/imgs/提示@2x.png" />待激活</a></p><h6>您有家人权益未激活，请及时激活</h6><p><span><b>' + res.msg.balance + '</b>&nbsp;余额（元）</span><button id="addXinxi">激活权益</button></p></li>'
+                  $('.banner-list ul').append(benrendom)
+                  $('#weishimin').on('click', function () {
+                    update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+                    if (new_falses) {
+                      window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                      return false;
+                    }
+                    if (newBtnFlag == 1) {
+                      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/newinfos"
+                    } else {
+                      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/familyInfo1"
+                    }
+                  })
+                  lens++
+                }
+              }
+            }
+          })
+        }
+      }
+      $('#close').on('click', function () {
+        $('.addbox').hide()
+      })
+      //轮播图初始化
+      var mySwiper = new Swiper('.banner', {
+        direction: 'horizontal', // 垂直切换选项
+        //loop: true, // 循环模式选项
+        //autoplay: 3000,
+        speed: 1000,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+      })
+      // 判断本人信息是否填写
+      function getselfWrite() {
+        var parameter = '{"openid":"' + openid + '"}';
+        $.ajax({
+          url: "https://www.bihubao.com/index.php/Api/Ensure/checkUserLicensedState",
+          type: "get",
+          async: false,
+          dataType: "json",
+          data: {
+            'parameter': parameter
+          },
+          success: function (result) {
+            console.log(result);
+            if (result.code == 0) {
+              selfWrite = result.msg;
+            }
+          }
+        });
+        return selfWrite;
+      }
+      setTimeout(function () {
+        // 本人信息是否填写
+        var selfWrite = getselfWrite();
+        var parameter = {};
+        if (!openids) {
+          openids = getCookie('openid')
+          // openids = openid
+        }
+        parameter["openid"] = openids;
+        parameter = JSON.stringify(parameter);
+        // 获取用户认证信息
+        $.ajax({
+          url: "https://www.bihubao.com/index.php/Api/Ensure/user_licensed_info",
+          type: "get",
+          async: false,
+          dataType: "json",
+          data: {
+            'parameter': parameter
+          },
+          success: function (result) {
+            console.log(result)
+            if (result.code == 0) {
+              console.log(result.msg.data_list);
+              var msgs = result.msg.data_list;
+              var html = "";
+              var noWriteNum = 0;
+              var haveDateNum = 0;
+              var flagSub = 0;
+              if (msgs.length == 1) {
+                if (msgs[0].step_type == "no_data") {
+                  html += msgs[0].relation + '待实名认证';
+                  $(".showInfo").html(html);
+                  $(".activeDes").html("认证后可领取");
+                  $(".activeButton").click(function () {
+                    update_page_st(openid2, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+                    if (selfWrite == 0) {
+                      newBtnFlag = 1
+                      window.open("https://www.bihubao.com/index.php/Api/Ensure/newinfos", "_self");
+                    } else {
+                      newBtnFlag = 2
+                      window.open("https://www.bihubao.com/index.php/Api/Ensure/familyInfo1",
+                        "_self");
+                    }
+                  });
+                } else {
+                  html += msgs[0].name + '余额过低';
+                  $(".showInfo").html(html);
+                  $(".activeDes").html("充值后享长久权益");
+                  $(".activeButton").html("立即为每单充值6元");
+                  $(".activeButton").click(function () {
+                    update_page_st(openid2, 0, "NewRecharge", 'submitSuc', 0, "");
+                    window.open("https://www.bihubao.com/Api/Wxpay/submitSuc.html?channel=" + channel, "_self");
+                  });
+                }
+              } else if (msgs.length > 1) {
+                for (var i = 0; i < msgs.length; i++) {
+                  if (msgs[i].step_type == "no_data") {
+                    noWriteNum++;
+                  }
+                  if (msgs[i].step_type == "have_data") {
+                    haveDateNum++;
+                  }
+                  if (noWriteNum >= 1) {
+                    $(".activeButton").html("立即认证，激活权益");
+                    $(".activeButton").click(function () {
+                      update_page_st(openid2, 0, "weishimin", 'submit_weishimin', 0, "");
+                      if (selfWrite == 0) {
+                        newBtnFlag = 1
+                        window.open("https://www.bihubao.com/index.php/Api/Ensure/newinfos", "_self");
+                      } else {
+                        newBtnFlag = 2
+                        window.open("https://www.bihubao.com/index.php/Api/Ensure/familyInfo1", "_self");
+                      }
+                    });
+                  }
+
+                  if (haveDateNum >= 1 && noWriteNum == 0) {
+                    flagSub = 1;
+                    new_falses = true
+                    $(".activeButton").html("立即为每单充值6元");
+                    $(".activeDes").html("充值后享长久权益");
+                    $(".activeButton").click(function () {
+                      window.open("https://www.bihubao.com/Api/Wxpay/submitSuc", "_self");
+                    });
+                  }
+                }
+                if (flagSub == 1) {
+                  if (!openidIsshow) {
+                    alert('您还未加入互助,请先加入')
+                    window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+                  } else {
+                    if (isToast) {
+                      $('.finalWrap').show()
+                    }
+                    // if (!openidIsshow) {
+                    //   alert('您还未加入互助,请先加入')
+                    //   window.location.href = 'https://www.bihubao.com/index.php/Api/Wxpay/unlicensed'
+                    // } else {
+                    //   $('.finalWrap').show()
+                    // }
+                  }
+                  if (haveDateNum == 1) {
+                    html += msgs[0].name + '1人余额过低';
+                  } else {
+                    html += msgs[0].name + '等' + haveDateNum + '人余额过低';
+                  }
+                } else {
+                  if (noWriteNum == 1) {
+                    if (!openidIsshow) {
+                      alert('您还未加入互助,请先加入')
+                      window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+                    } else {
+                      if (isToast) {
+                        $('.finalWrap').show()
+                      }
+                      // if (!openidIsshow) {
+                      //   alert('您还未加入互助,请先加入')
+                      //   window.location.href = 'https://www.bihubao.com/index.php/Api/Wxpay/unlicensed'
+                      // } else {
+                      //   $('.finalWrap').show()
+                      // }
+                    }
+                    $(".activeDes").html("认证后可领取");
+                    html += msgs[0].relation + '1人待实名认证';
+                  } else {
+                    html += msgs[0].relation + '等' + noWriteNum + '人待实名认证';
+                  }
+                }
+                $(".showInfo").html(html);
+              }
+            }
+          }
+        });
+      }, 500);
+    })
+    //添加家人点击跳转
+    $('#addFamily').on('click', function () {
+      update_page_st(openid2, channel, "addFamily", 'submit_addFamily', 0, "");
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+          //window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/joinhelp.html"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+        }
+        // window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/addFamily_new"
+      }
+    })
+    //我的琥珀
+    function gotomy() {
+      update_page_st(openid2, 0, "gotomy", 'submit_gotomy', 0, "");
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = 'https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/score_center.html'
+        }
+        // window.location.href = 'https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/score_center.html'
+      }
+    }
+    //邀请朋友
+    function gotodragonboat() {
+      update_page_st(openid2, 0, "Friends_goto2", 'submit_Friends2', 0, "");
+      window.location.href = 'https://www.bihubao.com/Weixin/Newuser/addfriends_test.html'
+
+    }
+    //互助邀请好友
+    function gotodragonboat2() {
+      update_page_st(openid2, 0, "Friends_goto", 'submit_Frirneds', 0, "");
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = 'https://www.bihubao.com/index.php/Weixin/Ensure/dragonboat.html'
+        }
+        // window.location.href = 'https://www.bihubao.com/index.php/Weixin/Ensure/dragonboat.html'
+      }
+    }
+    //公式扣款
+    function gotogongshi() {
+      if (newInfinish) {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          $('.finalWrap').show()
+        }
+      } else {
+        window.location.href = 'https://www.bihubao.com/index.php/Weixin/Affiche/publicity'
+      }
+    }
+    //大使或者同舟
+    function gotodashi() {
+      if (newInfinish) {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          $('.finalWrap').show()
+        }
+      } else {
+        window.location.href =
+          'https://www.bihubao.com/index.php/Weixin/MutualAidRecord/dashi/activity_id/3.html'
+      }
+    }
+    //跳转至充值页
+    function gotoRecharge() {
+      update_page_st(openid2, 0, "gotoRecharge", 'submit_gotoRecharge', 0, "");
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = "https://www.bihubao.com/Weixin/Newuser/Recharge.html";
+        }
+      }
+    }
+    //任务中心
+    function gototask_center() {
+      update_page_st(openid2, 0, "gototask_center", 'submit_gototask_center', 0, "");
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = "https://www.bihubao.com/Weixin/Newuser/TaskIndex";
+        }
+        // window.location.href = "https://www.bihubao.com/Weixin/Newuser/TaskIndex";
+      }
+    }
+    //资金明细
+    function gotozijinmingxi() {
+      if (newInfinish) {
+        $('.finalWrap').show()
+      } else {
+        if (!openidIsshow) {
+          alert('您还未加入互助,请先加入')
+          window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+        } else {
+          // $('.finalWrap').show()
+          window.location.href = 'https://www.bihubao.com/index.php/Weixin/Newuser/Capital.html'
+        }
+        // window.location.href = 'https://www.bihubao.com/index.php/Weixin/Newuser/Capital.html'
+      }
+    }
+    //申请互助
+    function gotoapplyhelp() {
+      update_page_st(openid2, 0, "apply_help", 'apply_help_submit', 0, "");
+      // window.location.href = 'https://www.bihubao.com/Weixin/Newuser/Apply.html'
+      //2019-10-18 改为直接跳转至以下页面  by GY
+      window.location.href = 'https://www.bihubao.com/Api/Tpa/getUserMidToken.html';
+    }
+
+    //家人支付按钮
+    setTimeout(function () {
+      //充足的支付按钮
+      $('.CZRecharges').on('click', function (e) {
+        e.stopPropagation();
+        var domss = $(this).parents()[1]
+        window.sessionStorage.setItem('family_id', $(domss).attr('class'))
+        var zhi = $(domss).children().eq(0).children().eq(0).children().eq(0).text()
+        console.log(zhi)
+        window.sessionStorage.setItem('UserNames', zhi)
+        var cookieuseranme = escape(zhi)
+        window.setCookie('UserNames', cookieuseranme)
+        update_page_st(openid2, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+        window.location.href = "https://www.bihubao.com/Weixin/Newuser/NewRecharge.html";
+      })
+      //不足的支付按钮
+      $('.BZRecharges').on('click', function (e) {
+        e.stopPropagation();
+        var domss = $(this).parents()[1]
+        window.sessionStorage.setItem('family_id', $(domss).attr('class'))
+        var zhi = $(domss).children().eq(0).children().eq(0).children().eq(0).text()
+        window.sessionStorage.setItem('UserNames', zhi)
+        var cookieuseranme = escape(zhi)
+        window.setCookie('UserNames', cookieuseranme)
+        update_page_st(openid2, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+        if (newInfinish) {
+          if (!openidIsshow) {
+            alert('您还未加入互助,请先加入')
+            window.location.href = "https://www.bihubao.com/index.php/Api/Wxpay/unlicensed"
+          } else {
+            $('.finalWrap').show()
+          }
+        } else {
+          window.location.href = "https://www.bihubao.com/Weixin/Newuser/NewRecharge.html";
+        }
+      })
+      //冻结的支付按钮
+      $('.DJRecharges').on('click', function (e) {
+        e.stopPropagation();
+        var domss = $(this).parents()[1]
+        window.sessionStorage.setItem('family_id', $(domss).attr('class'))
+        var zhi = $(domss).children().eq(0).children().eq(0).children().eq(0).text()
+        window.sessionStorage.setItem('UserNames', zhi)
+        var cookieuseranme = escape(zhi)
+        window.setCookie('UserNames', cookieuseranme)
+        update_page_st(openid2, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+        window.location.href = "https://www.bihubao.com/Weixin/Newuser/NewRecharge.html";
+      })
+      //失效的支付按钮
+      $('.SXRecharges').on('click', function (e) {
+        e.stopPropagation();
+        var domss = $(this).parents()[1]
+        window.sessionStorage.setItem('family_id', $(domss).attr('class'))
+        var zhi = $(domss).children().eq(0).children().eq(0).children().eq(0).text()
+        window.sessionStorage.setItem('UserNames', zhi)
+        var cookieuseranme = escape(zhi)
+        window.setCookie('UserNames', cookieuseranme)
+        update_page_st(openid2, 0, "NewRecharge", 'submit_NewRecharge', 0, "");
+        window.location.href = "https://www.bihubao.com/Weixin/Newuser/NewRecharge.html";
+      })
+      //补全信息按钮
+      $('#addXinxi').on('click', function (e) {
+        update_page_st(openid, 0, "weishimin", 'submit_weishimin', 0, "");
+        e.stopPropagation();
+        console.log($(this).parents()[1])
+        var domsw = $(this).parents()[1]
+        var zhiy = $(domsw).children(0).children(0).children(0).text()
+        if (zhiy == '家人1') {
+          window.location.href = "https://www.bihubao.com/Api/Wxpay/submitSuc"
+        } else {
+
+        }
+      })
+      //控制解冻卡
+      // if (IsThaw) {
+      //   $('.tips_top').show()
+      //   $('#Thaw_sons').show()
+      //   //轮播图初始化
+      //   var mySwiper = new Swiper('.tops_list', {
+      //     direction: 'vertical',
+      //     click:true,
+      //     loop: true, // 循环模式选项
+      //     autoplay: 3000,
+      //     speed: 1000
+      //   })
+      // }
+    }, 500)
+    //在线金库
+    function jd_icon() {
+      // alert("京东系统临时调整，稍后恢复");
+      alert("尊敬的客户您好，如需继续使用“在线金库”服务，请下载并使用“京东金融”APP中的“在线金库”服务。登录时使用您注册的手机号即可查看并操作您的账户");
+      // update_page_st(openid2, 0, "new_user_center", 'click_jd_money', 0, "");
+      // var jd_id = '{$jd_id}';
+      // location.href = 'https://jrunion.jd.com/s/eqqQ7n?uid=' + jd_id;
+    }
+    //优惠券
+    function youhuiquan() {
+      update_page_st(openid2, 0, "youhuiquan", 'submit_youhuiquan', 0, "");
+      location.href = 'https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/my_ticket_page.html'
+    }
+    //获取优惠券数据
+    var parameter = {}
+    parameter['openid'] = openid2
+    parameter = JSON.stringify(parameter)
+    $.ajax({
+      url: 'https://www.bihubao.com/Api/RecommendMananger/getAwardTicketList',
+      type: 'get',
+      anync: 'flase',
+      dataType: 'json',
+      data: {
+        'parameter': parameter
+      },
+      success: function (res) {
+        if (res.code == 0) {
+          console.log(res, '优惠券的数据')
+          if (res.msg.length == 0) {
+            $('.tips_top').hide()
+            $('.wrapper .nav2 span c').hide()
+          } else {
+            $.each(res.msg, function (item, index) {
+              if (index.payer == 'share') {
+                var dom = '<div class="task-slid swiper-slide" id="task_sons"><a href="https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/my_ticket_page.html">您成功邀请${index.join_user_name}加入互助,5元互助金券' + index.end_date + '前可用</a></div>'
+              } else {
+                var dom = '<div class="task-slid swiper-slide" id="task_sons"><a href="https://www.bihubao.com/index.php/EdmActivity/UserLifeCycle/my_ticket_page.html">恭喜您加入互助,5元互助金券' + index.end_date + '前可用</a></div>'
+              }
+              $('.tops_list_son').append(dom)
+              //轮播图初始化
+              var mySwiper = new Swiper('.tops_list', {
+                direction: 'vertical',
+                loop: true, // 循环模式选项
+                autoplay: 3000,
+                speed: 1000
+              })
+            })
+          }
+        }
+      }
+    })
+    //在线问诊
+    function doctoronline() {
+      window.location.href = 'https://rxthinking.com/pts/bihubao/';
+    }
+    //早起打卡
+    function daka() {
+      update_page_st(openid2, 0, "gotodaka", 'gotodaka_btn', 0, "");
+      window.location.href = "https://www.bihubao.com/index.php/WeChat/NewearlyTwo/calendar.html"
+    }
+    //产品测试
+    function gotoTest() {
+      update_page_st(openid2, 0, "gotoTest", 'gotoTest_btn', 0, "");
+      window.location.href = "http://bang.7glb.com/"
+    }
+    //肺炎互助
+    function gotoSina() {
+      update_page_st(openid2, 0, "new_user_center", 'gotoSina_click', 0, "");
+      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/myPlanCopy?channel=750002"
+    }
+    //轮播链接
+    function weiyi() {
+      update_page_st(openid2, 0, "new_user_center", 'click_weiyi', 0, "");
+      //window.location.href = 'https://bx.guahao.com/insurance/detail/2143713422629066320?partner=bhhz';
+      window.location.href = 'https://www.bihubao.com/index.php/Api/Misc/wy_redirect/openid/' + openid2;
+    }
+    function Medicalcare() {
+      //console.log(unionid)
+      update_page_st(openid2, 0, "Medicalcare", 'Medicalcare_btn', 0, "");
+      //window.location.href = 'https://channeljf.pubmi.cn/normalProduct/personDetail?userId=123&channel=ZT19043001&isHome=false';
+      //2020-01-20 11:55 改为新浪保险
+      // window.location.href = 'https://channeljf.pubmi.cn/normalProduct/threeDetail?agentId=030&channel=ZT20010801_cId'+unionid;
+      //window.location.href = 'https://channeljf.pubmi.cn/normalProduct/threeDetail?agentId=030&channel=ZT20010801';
+      //2020-05-09 14:00 修改为新浪保险新url（支持cID参数)
+      //modify by GY
+      //2020-10-16 18：46 修改广告图banner
+     // window.location.href = 'https://insmk.jr.sina.cn/huixiang-main/4?tid=37&channel=80810110025548922636_HZ5548922636_cId' + unionid;
+      window.location.href = 'http://pdbj.pc.ehuatai.com:9002/HT_ServicePlatform/mobileInsure/InsurePly?chNo=240001&identification=' + unionid;
+      //window.location.href = 'https://www.bihubao.com/index.php/Weixin/Insurance/redirect/id/44/channel/123/unionid/' + unionid + '.html';
+    }
+    function Sina_fy() {
+      update_page_st(openid2, 0, "new_user_center", 'sina_banner_click', 0, "");
+      window.location.href = "https://www.bihubao.com/index.php/Api/Ensure/myPlan?channel=750002"
+    }
+    function newyear2020() {
+      update_page_st(openid2, 0, "new_user_center", 'click_newyear2020', 0, "");
+      window.location.href = 'https://www.bihubao.com/index.php/Api/Ensure/wishCard.html';
+    }
+    // function active2020() {
+    //   update_page_st(openid2, 0, "active2020btn", 'active2020btn_click', 0, "");
+    //   window.location.href = 'https://mp.weixin.qq.com/s/lI48H_oGFJx87XFH6XbYBA';
+    // }
+    // function bill() {
+    //   update_page_st(openid2, 0, "ChildrensDay_index", 'ChildrensDay_btn', 0, "");
+    //   // window.location.href = 'https://www.bihubao.com/index.php/Weixin/Insurance/details/id/38/channel/1.html';
+    //   window.location.href = 'https://h.eqxiu.com/s/f45GksU1';
+    // }
+    function mall1111() {
+      update_page_st(openid2, 0, "new_user_center", 'click_mall', 0, "");
+      window.location.href = 'https://mall.bihubao.com/mobile/score/request';
+    }
+
+    function jd() {
+      update_page_st(openid2, 0, "new_user_center", 'click_jd', 0, "");
+      // var jd_id = '{$jd_id}';
+      location.href = 'https://www.bihubao.com/index.php/Weixin/Insurance/details/id/36/channel/1.html';
+    }
+    //壁虎商城反互助金活动
+    function shopActivity() {
+      update_page_st(openid2, 0, "BhshopActivity", 'BhshopActivity_btn', 0, "");
+      window.location.href = 'https://mall.ibehoo.com/mobile/shop/scoreindex';
+      // update_page_st(openid2, 0, "Bh12month12Activity", 'Bh12month12Activity_btn', 0, "");
+      // window.location.href = 'https://mp.weixin.qq.com/s/nMrofaZVUQRlVPD3-GqDZw';
+    }
+    //甄品直播带货活动
+    // function huzhuLive() {
+    //   update_page_st(openid2, 0, "bhCenterShopLive", 'bhCenterShopLive_btn', 0, "");
+    //   window.location.href = 'https://mp.weixin.qq.com/s/J-bDxQ6M_u9XgShOg9eO_A';
+    // }
+    function fouryears() {
+      update_page_st(openid2, 0, "new_user_center", 'click_4years', 0, "");
+      // var jd_id = '{$jd_id}';
+      location.href = 'https://www.bihubao.com/index.php/Api/Ensure/index.html';
+    }
+    function maidian(action, uid, channel) {
+      var paras = {
+        page: 'user_center',
+        from: 'weixin',
+        action: action,
+        app_uid: uid,
+        plan_code: 'XL003',
+        baidu_uid: '0',
+        channel: channel
+      };
+      $.ajax({
+        url: 'https://www.bihubao.com/index.php/Weixin/Xgjoin/action_count/',
+        type: 'POST',
+        data: JSON.stringify(paras),
+        dataType: 'json',
+        success: function (res) {
+          console.log("***********" + uid + "*********");
+          console.log(res);
+        },
+        error: function (err) {
+          // alert(err.msg);
+        }
+      });
+    }
+    $(".closeBtn").click(function () {
+      $(this).parents(".finalWrap").hide();
+    });
+    function gotojiacaihuzhu() {
+      update_page_st(openid2, 0, "new_user_center", 'click_jchz', 0, "");
+      var parameter = {}
+      parameter['openid'] = openid2
+      parameter['family_id'] = 0
+      parameter = JSON.stringify(parameter)
+      $.ajax({
+        url: 'https://www.bihubao.com/index.php/Api/User/getUserEnsureInfo',
+        type: 'get',
+        data: {
+          'parameter': parameter
+        },
+        success: function (res) {
+          res = JSON.parse(res)
+          houseNum = parseInt(res.msg.house)
+          if (houseNum > 0) {
+            //alert('有家财')
+            console.log('有家财')
+            window.location.href = 'https://www.bihubao.com/index.php/Weixin/Propertyhelp/house.html'
+          } else {
+            //alert('无家财')
+            console.log('无家财')
+            window.location.href = 'https://www.bihubao.com/index.php/Weixin/Propertyhelp/househelp.html'
+          }
+        }
+      })
+    }
+    //切换list
+    $('.wrapper h6 b').on('click', function () {
+      console.log(FriendFlag)
+      if (FriendFlag) {
+        $(this).addClass('addcolor').siblings().removeClass('addcolor')
+        if ($(this).index() == 0) {
+          $('#scroll-family').show()
+          $('.list-normal').hide()
+          $('#scroll-goodfriend').hide()
+          $('.wrapper h6 c').animate({ 'left': 4 + '%' }, 1000, 'swing')
+        } else {
+          $('#scroll-family').hide()
+          $('.list-normal').hide()
+          $('#scroll-goodfriend').show()
+          $('.wrapper h6 c').animate({ 'left': 31.5 + '%' }, 1000, 'swing')
+        }
+        //我的朋友scroll实例化
+        var wid = $('.banner-list2 ol li').length * $('.banner-list2 ol li').outerWidth()
+        $('.banner-list2 ol').width(wid + 190 + 'px')
+        // var myIscroll = new IScroll('.banner-list2', {
+        //   scrollY: false,
+        //   scrollX: true,
+        //   click: true
+        // });
+      } else {
+        alert('请先加入互助再邀请好友')
+      }
+    })
+    function txCZ(dom) {
+      shareflag = true
+      $('.shareMask').show()
+      $('.shareMask .shareBox').animate({ 'margin-top': 108 + '%' }, 1000, 'swing')
+      Fname = $(dom).children().eq(0).children().eq(0).text()
+      $('.shareMask .shareBox h6').text('点击右上角   ...   分享给' + Fname)
+    }
+    $('#closeShare').on('click', function () {
+      $('.shareMask').hide()
+      $('.shareMask .shareBox').animate({ 'margin-top': 161 + '%' })
+    })
+    //分享功能
+    //获取微信信息
+    if (shareflag) {
+      $.post('/Api/Wxtools/sharing', { 'url': window.location.href }, function (msg) {
+        if (msg.error == 1) {
+          console.log('error：' + msg.information);
+        }
+        wx.config({
+          debug: false,
+          appId: msg.appId,
+          timestamp: msg.timestamp,
+          nonceStr: msg.nonceStr,
+          signature: msg.signature,
+          jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage'
+          ]
+        });
+        wx.ready(function () {
+          // 分享给朋友
+          wx.onMenuShareAppMessage({
+            title: Fname + '提醒你充值,以免大病互助失效',
+            desc: '账户余额小于3元,将冻结壁虎互助的互助权益,无法申请互助金',
+            link: 'https://www.bihubao.com/Weixin/Newuser/Recharge.html',
+            imgUrl: 'https://www.bihubao.com/Public/images/NewUser/imgs/tx.png',
+            trigger: function (res) {
+              this.title = Fname + '提醒你充值,以免大病互助失效'
+            },
+            success: function (res) {
+              alert('分享成功')
+              $('.shareMask').hide()
+              $('.shareMask .shareBox').animate({ 'margin-top': 161 + '%' })
+            },
+            cancel: function (res) {
+              alert('分享失败')
+            },
+            fail: function (res) { }
+          });
+          wx.onMenuShareTimeline({
+            title: Fname + '提醒你充值,以免大病互助失效',
+            desc: '账户余额小于3元,将冻结壁虎互助的互助权益,无法申请互助金',
+            link: 'https://www.bihubao.com/Weixin/Newuser/Recharge.html',
+            imgUrl: 'https://www.bihubao.com/Public/images/NewUser/imgs/tx.png',
+            trigger: function (res) {
+              this.title = Fname + '提醒你充值,以免大病互助失效'
+            },
+            success: function (res) {
+              alert('分享成功')
+              $('.shareMask').hide()
+              $('.shareMask .shareBox').animate({ 'margin-top': 161 + '%' })
+            },
+            cancel: function (res) {
+              alert('分享失败')
+            },
+            fail: function (res) {
+            }
+          });
+        });
+      }, 'json');
+    }
+    setTimeout(function () {
+      $('.loading').hide()
+    }, 3000)
+    //新浪toast
+    // $('.sinaToast').on('click', function () {
+    //   isToast = true
+    //   $('.sinaToast').hide()
+    // })
+    $('.titleSina').on('click', function (ev) {
+      var oEvent = ev || event;
+      oEvent.cancelBubble = true;
+      oEvent.stopPropagation();
+      rotate = !rotate
+      if (rotate) {
+        isToast = true
+        $('.titleSina img').css({ 'transform': 'rotate(360deg)' })
+        $('.step_nbsp').hide()
+        $('.step_teach').show()
+      } else {
+        $('.titleSina img').css({ 'transform': 'rotate(180deg)' })
+        $('.step_nbsp').show()
+        $('.step_teach').hide()
+      }
+    })
+    $('#mykown').on('click', function () {
+      var parameter = {}
+      parameter['openid'] = openid2
+      parameter['ip'] = ip
+      parameter = JSON.stringify(parameter)
+      $.ajax({
+        url: 'https://www.bihubao.com/index.php/Api/Ensure/combine_know',
+        type: 'get',
+        async: false,
+        dataType: 'json',
+        data: { 'parameter': parameter },
+        success: function (res) {
+          isToast = true
+          $('.sinaToast').hide()
+        }
+      })
+    })
+  </script>
+
+</body>
+
+</html>
